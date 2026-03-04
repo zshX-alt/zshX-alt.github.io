@@ -3,36 +3,34 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Portofolio | Firmansyah</title>
+<title>Portfolio Firmansyah</title>
 
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
 
 <style>
 
 :root{
---bg-dark:#0f172a;
---bg-card:#1e293b;
+--bg:#0f172a;
+--card:#1e293b;
 --accent:#38bdf8;
---text-main:#f8fafc;
---text-dim:#94a3b8;
---whatsapp:#25d366;
+--text:#f8fafc;
+--dim:#94a3b8;
 }
 
 *{
 margin:0;
 padding:0;
 box-sizing:border-box;
-font-family:'Poppins',sans-serif;
-scroll-behavior:smooth;
+font-family:Poppins,sans-serif;
 }
 
 body{
-background:var(--bg-dark);
-color:var(--text-main);
+background:var(--bg);
+color:var(--text);
 overflow-x:hidden;
 }
 
-/* PARTICLE CANVAS */
+/* PARTICLES */
 
 #particles{
 position:fixed;
@@ -43,36 +41,35 @@ height:100%;
 z-index:-1;
 }
 
+/* CONTAINER */
+
+.container{
+max-width:1000px;
+margin:auto;
+padding:0 20px;
+}
+
 /* NAV */
 
 nav{
-display:flex;
-justify-content:space-between;
-align-items:center;
-padding:18px 6%;
-background:rgba(15,23,42,0.85);
 position:fixed;
 width:100%;
-z-index:100;
-backdrop-filter:blur(10px);
+top:0;
+background:rgba(15,23,42,0.8);
+backdrop-filter:blur(8px);
+}
+
+.nav-inner{
+max-width:1000px;
+margin:auto;
+display:flex;
+justify-content:space-between;
+padding:18px 20px;
 }
 
 .logo{
-font-weight:700;
-font-size:1.4rem;
 color:var(--accent);
-}
-
-nav ul{
-display:flex;
-list-style:none;
-}
-
-nav ul li a{
-color:white;
-text-decoration:none;
-margin-left:25px;
-font-size:0.9rem;
+font-weight:600;
 }
 
 /* HERO */
@@ -80,125 +77,108 @@ font-size:0.9rem;
 header{
 min-height:100vh;
 display:flex;
-flex-direction:column;
-justify-content:center;
 align-items:center;
 text-align:center;
-padding:120px 20px 60px;
 }
 
-header h1{
-font-size:clamp(2rem,6vw,3.5rem);
+.hero{
+width:100%;
 }
 
-header p{
-margin-top:10px;
-color:var(--text-dim);
-max-width:500px;
+.hero h1{
+font-size:clamp(2rem,5vw,3rem);
+margin-bottom:10px;
+}
+
+.hero p{
+color:var(--dim);
 }
 
 .location{
-margin-top:20px;
+margin-top:15px;
+display:inline-block;
 background:#334155;
-padding:8px 16px;
+padding:6px 14px;
 border-radius:20px;
 font-size:0.85rem;
 }
 
-/* SECTION */
+/* PROJECT */
 
 section{
-padding:80px 6%;
+padding:70px 0;
 }
 
 h2{
 text-align:center;
-margin-bottom:40px;
 color:var(--accent);
+margin-bottom:35px;
 }
 
-/* PROJECT */
-
-.project-grid{
+.grid{
 display:grid;
-grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
-gap:20px;
+grid-template-columns:repeat(auto-fit,minmax(240px,1fr));
+gap:18px;
 }
 
 .card{
-background:var(--bg-card);
-border-radius:15px;
+background:var(--card);
+border-radius:12px;
 overflow:hidden;
 border:1px solid #334155;
 transition:0.3s;
 }
 
 .card:hover{
-transform:translateY(-8px);
-border-color:var(--accent);
+transform:translateY(-5px);
 }
 
 .card img{
 width:100%;
-height:170px;
+height:150px;
 object-fit:cover;
 }
 
 .card-content{
-padding:20px;
+padding:16px;
 }
 
 .card-content p{
-color:var(--text-dim);
-margin-top:8px;
+color:var(--dim);
+font-size:0.9rem;
+margin-top:6px;
 }
 
 /* CONTACT */
 
-.contact-box{
-background:var(--bg-card);
-max-width:600px;
-margin:auto;
-padding:35px;
-border-radius:20px;
+.contact{
 text-align:center;
+background:var(--card);
+padding:30px;
+border-radius:16px;
 }
 
-.btn-wa{
+.btn{
 display:inline-block;
-background:var(--whatsapp);
+background:#25d366;
 color:white;
-padding:14px 30px;
-border-radius:50px;
+padding:12px 24px;
+border-radius:30px;
+margin-top:12px;
 text-decoration:none;
-margin-top:15px;
 }
 
 .contact-info{
-margin-top:15px;
-color:var(--text-dim);
+margin-top:12px;
+color:var(--dim);
+font-size:0.9rem;
 }
 
 footer{
 text-align:center;
-padding:35px;
-border-top:1px solid #334155;
+padding:30px;
 font-size:0.8rem;
-color:var(--text-dim);
-}
-
-/* MOBILE */
-
-@media(max-width:768px){
-
-nav ul{
-display:none;
-}
-
-header{
-padding-top:140px;
-}
-
+color:var(--dim);
 }
 
 </style>
@@ -209,39 +189,40 @@ padding-top:140px;
 <canvas id="particles"></canvas>
 
 <nav>
+<div class="nav-inner">
 <div class="logo">PORTFOLIO</div>
-<ul>
-<li><a href="#about">Tentang</a></li>
-<li><a href="#projects">Proyek</a></li>
-<li><a href="#contact">Kontak</a></li>
-</ul>
+</div>
 </nav>
 
-<header id="about">
+<header>
+<div class="container hero">
 
 <h1>Firmansyah Cahya Maulud</h1>
 
-<p>Web Developer yang fokus pada desain modern dan fungsional.</p>
+<p>Web Developer fokus pada desain modern dan fungsional.</p>
 
 <div class="location">
-📍 <a href="https://www.google.com/maps/search/?api=1&query=Banjarwangi+Garut" target="_blank" style="color:white;text-decoration:none;">
+📍 
+<a href="https://maps.google.com/?q=Banjarwangi+Garut" target="_blank" style="color:white;text-decoration:none;">
 Banjarwangi, Garut
 </a>
 </div>
 
+</div>
 </header>
 
-<section id="projects">
+<section>
+<div class="container">
 
 <h2>Proyek</h2>
 
-<div class="project-grid">
+<div class="grid">
 
 <div class="card">
 <img src="https://picsum.photos/500/300?1">
 <div class="card-content">
-<h3>Sistem E-Learning</h3>
-<p>Platform pembelajaran online modern.</p>
+<h3>E-Learning</h3>
+<p>Platform pembelajaran online.</p>
 </div>
 </div>
 
@@ -257,21 +238,23 @@ Banjarwangi, Garut
 <img src="https://picsum.photos/500/300?3">
 <div class="card-content">
 <h3>Company Profile</h3>
-<p>Website perusahaan dengan desain elegan.</p>
+<p>Website perusahaan modern.</p>
 </div>
 </div>
 
 </div>
 
+</div>
 </section>
 
-<section id="contact">
+<section>
+<div class="container">
 
-<div class="contact-box">
+<div class="contact">
 
 <h2>Kontak</h2>
 
-<a href="https://wa.me/6283155628969" class="btn-wa">WhatsApp</a>
+<a href="https://wa.me/6283155628969" class="btn">WhatsApp</a>
 
 <div class="contact-info">
 <p>📱 083155628969</p>
@@ -280,6 +263,7 @@ Banjarwangi, Garut
 
 </div>
 
+</div>
 </section>
 
 <footer>
@@ -296,13 +280,13 @@ canvas.height=window.innerHeight
 
 let particles=[]
 
-for(let i=0;i<70;i++){
+for(let i=0;i<60;i++){
 particles.push({
 x:Math.random()*canvas.width,
 y:Math.random()*canvas.height,
-vx:(Math.random()-0.5)*0.5,
-vy:(Math.random()-0.5)*0.5,
-size:Math.random()*2+1
+vx:(Math.random()-0.5)*0.4,
+vy:(Math.random()-0.5)*0.4,
+size:Math.random()*2
 })
 }
 
@@ -315,8 +299,8 @@ particles.forEach(p=>{
 p.x+=p.vx
 p.y+=p.vy
 
-if(p.x<0||p.x>canvas.width) p.vx*=-1
-if(p.y<0||p.y>canvas.height) p.vy*=-1
+if(p.x<0||p.x>canvas.width)p.vx*=-1
+if(p.y<0||p.y>canvas.height)p.vy*=-1
 
 ctx.beginPath()
 ctx.arc(p.x,p.y,p.size,0,Math.PI*2)

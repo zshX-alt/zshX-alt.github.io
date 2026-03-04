@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portofolio | Firmansyah Cahya Maulud</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+    
+    <style>
+        /* Variabel Warna Mode Gelap */
+        :root {
+            --bg-dark: #0f172a;
+            --bg-card: #1e293b;
+            --accent: #38bdf8; /* Biru Langit */
+            --text-main: #f8fafc;
+            --text-dim: #94a3b8;
+            --whatsapp: #25d366;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+            scroll-behavior: smooth;
+        }
+
+        body {
+            background-color: var(--bg-dark);
+            color: var(--text-main);
+        }
+
+        /* Navigasi */
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 8%;
+            background: rgba(15, 23, 42, 0.9);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            border-bottom: 1px solid #334155;
+        }
+
+        .logo {
+            font-weight: 700;
+            font-size: 1.5rem;
+            color: var(--accent);
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+        }
+
+        nav ul li a {
+            color: var(--text-main);
+            text-decoration: none;
+            margin-left: 30px;
+            font-size: 0.9rem;
+            transition: 0.3s;
+        }
+
+        nav ul li a:hover {
+            color: var(--accent);
+        }
+
+        /* Hero Section */
+        header {
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 0 20px;
+            background: radial-gradient(circle at center, #1e293b 0%, #0f172a 100%);
+        }
+
+        header h1 {
+            font-size: 3.5rem;
+            margin-bottom: 10px;
+            letter-spacing: -1px;
+        }
+
+        header p {
+            font-size: 1.2rem;
+            color: var(--text-dim);
+            max-width: 600px;
+        }
+
+        .location {
+            margin-top: 20px;
+            padding: 8px 16px;
+            background: #334155;
+            border-radius: 20px;
+            font-size: 0.85rem;
+        }
+
+        /* Section Proyek */
+        section {
+            padding: 100px 8%;
+        }
+
+        h2 {
+            text-align: center;
+            font-size: 2rem;
+            margin-bottom: 50px;
+            color: var(--accent);
+        }
+
+        .project-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 25px;
+        }
+
+        .card {
+            background: var(--bg-card);
+            padding: 30px;
+            border-radius: 15px;
+            border: 1px solid #334155;
+            transition: all 0.3s ease;
+        }
+
+        .card:hover {
+            transform: translateY(-10px);
+            border-color: var(--accent);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+        }
+
+        /* Section Kontak */
+        .contact-box {
+            background: var(--bg-card);
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 40px;
+            border-radius: 20px;
+            text-align: center;
+        }
+
+        .btn-wa {
+            display: inline-block;
+            background: var(--whatsapp);
+            color: white;
+            padding: 15px 35px;
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: 600;
+            margin-top: 20px;
+            transition: 0.3s;
+        }
+
+        .btn-wa:hover {
+            box-shadow: 0 0 25px rgba(37, 211, 102, 0.5);
+            transform: scale(1.02);
+        }
+
+        footer {
+            text-align: center;
+            padding: 40px;
+            border-top: 1px solid #334155;
+            color: var(--text-dim);
+            font-size: 0.8rem;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            header h1 { font-size: 2.5rem; }
+            nav ul { display: none; }
+        }
+    </style>
+</head>
+<body>
+
+    <nav>
+        <div class="logo">PORTFOLIO.</div>
+        <ul>
+            <li><a href="#about">Tentang</a></li>
+            <li><a href="#projects">Proyek</a></li>
+            <li><a href="#contact">Kontak</a></li>
+        </ul>
+    </nav>
+
+    <header id="about">
+        <h1>Firmansyah Cahya Maulud</h1>
+        <p>Web Developer Kreatif yang fokus pada fungsionalitas dan estetika modern.</p>
+        <div class="location">
+            📍 Kec. Banjarwangi, Kabupaten Garut, Jawa Barat
+        </div>
+    </header>
+
+    <section id="projects">
+        <h2>Proyek Terbaru</h2>
+        <div class="project-grid">
+            <div class="card">
+                <h3>Sistem E-Learning</h3>
+                <p style="color: var(--text-dim); margin-top: 10px;">Platform pembelajaran online berbasis web yang responsif.</p>
+            </div>
+            <div class="card">
+                <h3>Aplikasi Kasir Toko</h3>
+                <p style="color: var(--text-dim); margin-top: 10px;">Manajemen stok dan penjualan real-time untuk UMKM.</p>
+            </div>
+            <div class="card">
+                <h3>Company Profile</h3>
+                <p style="color: var(--text-dim); margin-top: 10px;">Website instansi dengan desain elegan dan SEO friendly.</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="contact">
+        <div class="contact-box">
+            <h2>Mari Berkolaborasi</h2>
+            <p>Tertarik untuk memulai proyek baru? Silakan hubungi saya melalui WhatsApp:</p>
+            <a href="https://wa.me/6283155628959" target="_blank" class="btn-wa">
+                Hubungi via WhatsApp
+            </a>
+            <p style="margin-top: 20px; font-size: 0.9rem; color: var(--text-dim);">
+                0831-5562-8959
+            </p>
+        </div>
+    </section>
+
+    <footer>
+        <p>&copy; 2026 Firmansyah Cahya Maulud. All Rights Reserved.</p>
+    </footer>
+
+</body>
+</html>

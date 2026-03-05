@@ -1,38 +1,44 @@
 from flask import Flask, request, jsonify
 from flask_cors import CORS
-import google.generativeai as genai
+from google import genai
 import os
 
 app = Flask(__name__)
 CORS(app)
 
-genai.configure(api_key=os.environ.get("GEMINI_API_KEY"))
+API_KEY = os.environ.get("GEMINI_API_KEY")
 
-model = genai.GenerativeModel("gemini-1.5-flash")
+client = genai.Client(api_key=API_KEY)
 
 @app.route("/")
 def home():
-    return jsonify({"status":"Gemini AI aktif"})
+    return jsonify({
+        "status": "AI Server Aktif",
+        "model": "gemini-1.5-flash"
+    })
 
 @app.route("/chat", methods=["POST"])
 def chat():
     try:
+        data = request.json
+        message = data.get("message", "")
 
-        data=request.json
-        message=data.get("message","")
-
-        response=model.generate_content(message)
+        response = client.models.generate_content(
+            model="gemini-1.5-flash",
+            contents=message
+        )
 
         return jsonify({
-            "reply":response.text
+            "user": message,
+            "reply": response.text
         })
 
     except Exception as e:
         return jsonify({
-            "error":str(e)
-        }),500
+            "error": str(e)
+        }), 500
 
 
 if __name__ == "__main__":
-    port=int(os.environ.get("PORT",8080))
-    app.run(host="0.0.0.0",port=port)
+    port = int(os.environ.get("PORT", 8080))
+    app.run(host="0.0.0.0", port=port)

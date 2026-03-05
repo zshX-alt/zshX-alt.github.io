@@ -1,28 +1,27 @@
 from flask import Flask, request, jsonify
 from flask_cors import CORS
-import random
+import google.generativeai as genai
+import os
 
 app = Flask(__name__)
 CORS(app)
 
+genai.configure(api_key=os.environ.get("GEMINI_API_KEY"))
+
+model = genai.GenerativeModel("gemini-pro")
+
 @app.route("/")
 def home():
-    return jsonify({"status":"API aktif"})
+    return jsonify({"status":"Gemini AI aktif"})
 
 @app.route("/chat", methods=["POST"])
 def chat():
-    data = request.json
-    pesan = data.get("message","")
 
-    balasan = [
-        "Menarik juga.",
-        "Coba jelaskan lebih detail.",
-        "Hmm... logikanya masuk.",
-        "Kamu yakin dengan itu?",
-        "Aku sedang memproses idemu."
-    ]
+    data=request.json
+    message=data.get("message","")
+
+    response=model.generate_content(message)
 
     return jsonify({
-        "user": pesan,
-        "reply": random.choice(balasan)
+        "reply":response.text
     })

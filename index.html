@@ -2,59 +2,73 @@
 <html lang="id">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>JLPT N4 - Master Tracker</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>JLPT N4 Master</title>
     <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;800&display=swap" rel="stylesheet">
 </head>
 <body>
+    <div class="bg-glow"></div>
+    
     <div class="container">
-        <header>
-            <h1>JLPT N4 Study</h1>
-            <div class="stats-container">
-                <div class="stat-box">
-                    <span id="progress-percent">0%</span>
-                    <small>Total Progres</small>
-                </div>
-                <div class="stat-box">
-                    <span id="vocab-count">0 / 1500</span>
-                    <small>Kosakata</small>
+        <header class="glass-card main-stats">
+            <div class="header-info">
+                <span class="label">PROGRESS BELAJAR</span>
+                <div class="main-stats-row">
+                    <h1 id="progress-percent">0%</h1>
+                    <div class="badge">N4 TARGET</div>
                 </div>
             </div>
-            <div class="progress-bar"><div id="main-progress" class="fill"></div></div>
+            
+            <div class="progress-track">
+                <div id="main-progress" class="fill"></div>
+            </div>
+            
+            <div class="stats-footer">
+                <div class="stat-group">
+                    <span id="vocab-count">0 / 1500</span>
+                    <label>KOSAKATA</label>
+                </div>
+                <div class="stat-group">
+                    <span id="grammar-count">0 / 130</span>
+                    <label>TATA BAHASA</label>
+                </div>
+            </div>
         </header>
 
-        <nav class="mode-selector">
+        <nav class="glass-tabs">
             <button onclick="changeMode('vocab')" id="mode-vocab" class="active">Kosakata</button>
             <button onclick="changeMode('grammar')" id="mode-grammar">Tata Bahasa</button>
         </nav>
 
-        <div id="grammar-menu" style="display:none;">
-            <div class="bab-container" id="bab-list">
+        <div id="grammar-menu" style="display:none;" class="bab-wrapper">
+            <div class="bab-scroll" id="bab-list">
                 </div>
-            <p class="bab-label">Topik: <span id="current-bab-name">Pilih Bab</span></p>
         </div>
 
-        <main id="flashcard-area">
-            <div class="card-stack">
-                <div id="main-card" class="flashcard">
-                    <div class="card-front">
+        <main class="card-arena">
+            <div id="main-card" class="flashcard">
+                <div class="card-inner">
+                    <div class="card-front glass-card">
+                        <div class="card-type">PERTANYAAN</div>
                         <h2 id="card-kanji">...</h2>
-                        <p class="tap-hint">Klik untuk lihat arti</p>
+                        <div class="tap-indicator">Ketuk untuk lihat arti</div>
                     </div>
-                    <div class="card-back" id="card-content-back">
-                        </div>
+                    <div class="card-back glass-card">
+                        <div class="card-type">JAWABAN</div>
+                        <div id="card-content-back">
+                            </div>
+                    </div>
                 </div>
             </div>
 
-            <div class="flashcard-controls">
-                <button class="btn-action dont-know" onclick="handleAnswer(false)">❌ Belum</button>
-                <button class="btn-action know" onclick="handleAnswer(true)">✅ Tahu</button>
+            <div class="action-row">
+                <button class="btn-circle btn-fail" onclick="handleAnswer(false)">✕</button>
+                <button class="btn-circle btn-success" onclick="handleAnswer(true)">✓</button>
             </div>
         </main>
-
-        <footer>
-            <button class="btn-reset" onclick="resetProgress()">Reset Semua Progres</button>
-        </footer>
+        
+        <button class="btn-reset" onclick="resetProgress()">Reset Progress</button>
     </div>
 
     <script src="data.js"></script>

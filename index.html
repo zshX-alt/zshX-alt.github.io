@@ -3,76 +3,44 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ZSHX Alpha | Digital Growth Agency</title>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
+    <title>JLPT N4 Study Tracker</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
+    <div class="container">
+        <header>
+            <h1>JLPT N4 Progress</h1>
+            <p>Klik pada kartu untuk menandai materi yang sudah dikuasai.</p>
+        </header>
 
-    <div class="blob-bg"></div>
-
-    <nav>
-        <div class="nav-container">
-            <div class="logo">ZSHX<span>.</span></div>
-            <div class="nav-links">
-                <a href="#services">Services</a>
-                <a href="#work">Work</a>
-                <a href="#contact" class="btn-glass">Let's Talk</a>
+        <div class="dashboard-grid">
+            <div class="card">
+                <h3>Kosakata (語彙)</h3>
+                <div class="progress-info"><span id="goi-count">0</span> / 1500</div>
+                <div class="progress-bar"><div id="goi-progress" class="fill"></div></div>
+            </div>
+            <div class="card">
+                <h3>Kanji (漢字)</h3>
+                <div class="progress-info"><span id="kanji-count">0</span> / 300</div>
+                <div class="progress-bar"><div id="kanji-progress" class="fill"></div></div>
             </div>
         </div>
-    </nav>
 
-    <section class="hero">
-        <div class="container">
-            <span class="badge">Next-Gen Marketing Agency</span>
-            <h1>Scale Your Business <br><span class="gradient-text">Beyond Limits.</span></h1>
-            <p>Kami menggabungkan data analitik dengan kreativitas tanpa batas untuk mendominasi pasar digital.</p>
-            <div class="hero-btns">
-                <a href="#contact" class="btn-primary">Mulai Sekarang</a>
-                <a href="#services" class="btn-secondary">Lihat Layanan</a>
+        <section class="list-section">
+            <div class="tabs">
+                <button id="btn-kanji" class="active" onclick="switchTab('kanji')">Daftar Kanji</button>
+                <button id="btn-vocab" onclick="switchTab('vocabulary')">Daftar Kosakata</button>
             </div>
-        </div>
-    </section>
 
-    <section id="services" class="services">
-        <div class="container">
-            <div class="section-header">
-                <h2>Our Expertise</h2>
-                <p>Solusi digital strategis untuk brand masa kini.</p>
-            </div>
-            <div class="grid-cards">
-                <div class="card">
-                    <div class="icon">🚀</div>
-                    <h3>Growth Hacking</h3>
-                    <p>Strategi agresif untuk menaikkan metrik bisnis Anda secara signifikan.</p>
-                </div>
-                <div class="card">
-                    <div class="icon">🎨</div>
-                    <h3>Ads Creative</h3>
-                    <p>Visual iklan yang tidak hanya cantik, tapi menghasilkan konversi tinggi.</p>
-                </div>
-                <div class="card">
-                    <div class="icon">📊</div>
-                    <h3>Data Analytics</h3>
-                    <p>Keputusan berdasarkan data, bukan sekadar asumsi atau perasaan.</p>
-                </div>
-            </div>
-        </div>
-    </section>
+            <div id="item-list" class="item-list"></div>
+        </section>
 
-    <section id="contact" class="cta-section">
-        <div class="container">
-            <div class="cta-box">
-                <h2>Siap untuk mendominasi?</h2>
-                <p>Konsultasikan strategi digital Anda secara gratis hari ini.</p>
-                <a href="https://wa.me/nomor-wa-anda" class="btn-primary">Hubungi via WhatsApp</a>
-            </div>
-        </div>
-    </section>
+        <footer>
+            <button class="btn-reset" onclick="resetProgress()">Reset Semua Progres</button>
+        </footer>
+    </div>
 
-    <footer>
-        <p>&copy; 2026 ZSHX Alpha. Built for the future.</p>
-    </footer>
-
+    <script src="data.js"></script>
+    <script src="script.js"></script>
 </body>
 </html>

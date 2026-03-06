@@ -2,139 +2,71 @@
 <html lang="id">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>N4 Master</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Neko-Sensei: Visual Japanese</title>
+    <script src="https://cdn.tailwindcss.com"></script>
     <style>
-        :root {
-            --bg: #000000;
-            --card-bg: #1c1c1e;
-            --accent: #2c2c2e;
-            --text: #ffffff;
-            --dim: #8e8e93;
-            --success: #30d158;
-            --error: #ff453a;
-            --blue: #0a84ff;
-        }
-
-        * { -webkit-tap-highlight-color: transparent; box-sizing: border-box; }
-        body {
-            font-family: -apple-system, system-ui, sans-serif; margin: 0; 
-            background: var(--bg); color: var(--text);
-            height: 100vh; display: flex; flex-direction: column; overflow: hidden;
-        }
-
-        header {
-            padding: 18px; text-align: center; border-bottom: 0.5px solid var(--accent);
-            background: rgba(0,0,0,0.8); backdrop-filter: blur(10px);
-            font-size: 13px; font-weight: 700; letter-spacing: 2px;
-        }
-
-        .container { flex: 1; overflow-y: auto; padding: 20px; padding-bottom: 150px; }
-
-        /* Flashcard Area */
-        .card-zone { height: 50vh; perspective: 1200px; margin: 20px 0; z-index: 1; }
-        .card-inner {
-            position: relative; width: 100%; height: 100%;
-            transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
-            transform-style: preserve-3d; cursor: pointer;
-        }
-        .card-inner.flipped { transform: rotateY(180deg); }
-        .card-face {
-            position: absolute; width: 100%; height: 100%;
-            backface-visibility: hidden; border-radius: 20px;
-            display: flex; flex-direction: column; justify-content: center;
-            align-items: center; padding: 30px; background: var(--card-bg);
-            border: 1px solid var(--accent);
-        }
-        .card-back { transform: rotateY(180deg); background: #252528; }
-
-        .kanji { font-size: 72px; margin: 0; font-weight: 600; }
-        .reading { font-size: 22px; color: var(--dim); margin-bottom: 8px; }
-        .meaning { font-size: 30px; font-weight: 700; color: var(--success); text-align: center; }
-
-        /* Controls - Fixed at top layer */
-        .controls {
-            position: fixed; bottom: 85px; left: 0; width: 100%;
-            display: none; padding: 0 20px; gap: 15px; z-index: 9999;
-        }
-        .controls.visible { display: flex; animation: slideUp 0.3s ease; }
-
-        .btn {
-            flex: 1; padding: 18px; border-radius: 14px; border: none;
-            font-size: 14px; font-weight: 700; text-transform: uppercase;
-        }
-        .btn-again { background: #262626; color: var(--error); border: 1px solid var(--error); }
-        .btn-good { background: var(--success); color: #000; }
-
-        /* Bottom Nav - Text Only */
-        nav {
-            position: fixed; bottom: 0; width: 100%; background: #1c1c1e;
-            display: flex; border-top: 0.5px solid var(--accent);
-            padding-bottom: env(safe-area-inset-bottom);
-        }
-        .nav-item { 
-            flex: 1; text-align: center; padding: 22px 0; 
-            color: var(--dim); font-size: 11px; font-weight: 700; letter-spacing: 1px;
-        }
-        .nav-item.active { color: var(--text); border-top: 2px solid var(--blue); }
-
-        .grammar-box { background: var(--card-bg); padding: 18px; border-radius: 15px; margin-bottom: 12px; border-left: 4px solid var(--blue); }
-        .hidden { display: none; }
-        @keyframes slideUp { from { transform: translateY(20px); opacity: 0; } to { transform: translateY(0); opacity: 1; } }
+        body { background-color: #0f172a; color: #f8fafc; font-family: 'sans-serif'; }
+        .kanji-card:hover { transform: translateY(-5px); transition: all 0.3s; }
+        .particle { color: #facc15; font-weight: bold; } /* Kuning */
+        .subject { color: #60a5fa; border-bottom: 2px solid #60a5fa; } /* Biru */
+        .verb { color: #f87171; font-weight: bold; } /* Merah */
+        .object { color: #4ade80; border-bottom: 2px solid #4ade80; } /* Hijau */
     </style>
 </head>
-<body>
+<body class="p-4 md:p-8">
 
-<header id="h-title">VOCABULARY</header>
-
-<div class="container">
-    <div id="sec-vocab">
-        <div style="display: flex; justify-content: space-between; font-size: 11px; color: var(--dim); font-weight: bold;">
-            <span id="label-day">DAY 1</span>
-            <span id="label-count">0 / 0</span>
+    <header class="max-w-4xl mx-auto flex justify-between items-center mb-8">
+        <div>
+            <h1 class="text-3xl font-black text-indigo-400">NEKO-SENSEI 🐾</h1>
+            <p class="text-sm text-slate-400">Target: 1.500 Kosakata (25/hari)</p>
         </div>
-        <div class="card-zone">
-            <div class="card-inner" id="card" onclick="flipCard()">
-                <div class="card-face">
-                    <h1 class="kanji" id="v-kanji">---</h1>
-                    <p style="color: var(--dim); font-size: 10px; margin-top: 40px; letter-spacing: 1px;">TAP TO FLIP</p>
+        <button onclick="toggleSettings()" class="bg-slate-800 p-2 rounded-full hover:bg-slate-700">⚙️</button>
+    </header>
+
+    <main class="max-w-4xl mx-auto space-y-8">
+        <div class="bg-slate-800 p-4 rounded-xl border border-slate-700">
+            <div class="flex justify-between mb-2 text-sm">
+                <span>Progress Belajar</span>
+                <span id="progress-text">0 / 1500</span>
+            </div>
+            <div class="w-full bg-slate-900 h-3 rounded-full overflow-hidden">
+                <div id="progress-bar" class="bg-indigo-500 h-full w-0 transition-all duration-1000"></div>
+            </div>
+        </div>
+
+        <section>
+            <h2 class="text-xl font-bold mb-4 flex items-center gap-2">🎯 Target Hari Ini (25 Kata)</h2>
+            <div id="kanji-container" class="grid grid-cols-2 md:grid-cols-5 gap-4">
                 </div>
-                <div class="card-face card-back">
-                    <div class="reading" id="v-reading">---</div>
-                    <div class="meaning" id="v-meaning">---</div>
-                </div>
+        </section>
+
+        <section class="bg-slate-800 p-6 rounded-2xl border border-slate-700 shadow-xl">
+            <h2 class="text-xl font-bold mb-4">🎨 AI Sentence Architect</h2>
+            <p class="text-sm text-slate-400 mb-4">Tulis kalimat Jepangmu, Neko-Sensei akan membedah logikanya.</p>
+            <div class="flex gap-2 mb-4">
+                <input id="user-input" type="text" placeholder="Contoh: 私 は 日本 に 行きます" 
+                       class="flex-1 bg-slate-900 border border-slate-700 p-3 rounded-lg outline-none focus:border-indigo-500 text-white">
+                <button onclick="checkSentence()" class="bg-indigo-600 hover:bg-indigo-500 px-6 py-3 rounded-lg font-bold">Bedah!</button>
+            </div>
+            <div id="ai-response" class="min-h-[100px] p-4 bg-slate-900 rounded-lg text-lg leading-relaxed">
+                Hasil bedah logika akan muncul di sini...
+            </div>
+        </section>
+    </main>
+
+    <div id="settings-modal" class="hidden fixed inset-0 bg-black/90 flex items-center justify-center z-50 p-4">
+        <div class="bg-slate-900 border border-indigo-500 p-8 rounded-3xl max-w-sm w-full">
+            <h3 class="text-2xl font-bold mb-4">Neko-Settings</h3>
+            <label class="block text-sm text-slate-400 mb-2">Google Gemini API Key:</label>
+            <input type="password" id="api-key-input" class="w-full bg-slate-800 p-3 rounded-lg mb-6 border border-slate-700">
+            <div class="flex gap-3">
+                <button onclick="saveSettings()" class="flex-1 bg-indigo-600 p-3 rounded-xl font-bold">Simpan</button>
+                <button onclick="toggleSettings()" class="flex-1 bg-slate-700 p-3 rounded-xl">Tutup</button>
             </div>
         </div>
     </div>
 
-    <div id="sec-grammar" class="hidden">
-        <div id="grammar-list"></div>
-    </div>
-
-    <div id="sec-stats" class="hidden">
-        <div class="grammar-box">
-            <p style="font-size: 11px; color: var(--dim); margin: 0 0 10px;">MASTERY PROGRESS</p>
-            <div style="background: var(--accent); height: 8px; border-radius: 4px; overflow: hidden;">
-                <div id="p-bar" style="background: var(--success); height: 100%; width: 0%; transition: 0.8s;"></div>
-            </div>
-            <p id="p-text" style="margin-top: 12px; font-weight: 700; font-size: 14px;">0 / 1500 WORDS</p>
-        </div>
-    </div>
-</div>
-
-<div class="controls" id="card-controls">
-    <button class="btn btn-again" onclick="handleResult(false)">ULANGI</button>
-    <button class="btn btn-good" onclick="handleResult(true)">HAFAI</button>
-</div>
-
-<nav>
-    <div class="nav-item active" id="n-vocab" onclick="switchTab('vocab')">VOCAB</div>
-    <div class="nav-item" id="n-grammar" onclick="switchTab('grammar')">GRAMMAR</div>
-    <div class="nav-item" id="n-stats" onclick="switchTab('stats')">STATS</div>
-</nav>
-
-<script src="data_vocab.js"></script>
-<script src="data_grammar.js"></script>
-<script src="script.js"></script>
+    <script src="script.js"></script>
 </body>
 </html>

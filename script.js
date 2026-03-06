@@ -1,89 +1,83 @@
-let appState = {
-    day: parseInt(localStorage.getItem('jlpt_n4_day')) || 1,
-    mastered: JSON.parse(localStorage.getItem('jlpt_n4_mastered')) || [],
-    pool: JSON.parse(localStorage.getItem('jlpt_n4_pool')) || [], // Kata sulit
-    queue: [],
-    idx: 0
-};
+// Data 25 Kosakata Pertama (Contoh dari 1500)
+const vocabularyData = [
+    { kanji: "日本", reading: "nihon", meaning: "Jepang" },
+    { kanji: "先生", reading: "sensei", meaning: "Guru" },
+    { kanji: "学生", reading: "gakusei", meaning: "Siswa" },
+    { kanji: "何", reading: "nani", meaning: "Apa" },
+    { kanji: "行く", reading: "iku", meaning: "Pergi" },
+    // Tambahkan data lainnya sampai 1500 di sini
+];
 
+// --- Core App Logic ---
 function initApp() {
-    // Mode Review setiap hari ke-7
-    const isReview = appState.day % 7 === 0;
-    if (isReview) {
-        appState.queue = vocabDatabase.filter(v => appState.pool.includes(v.id));
-        if (appState.queue.length === 0) appState.queue = vocabDatabase.filter(v => v.day === appState.day - 1);
-    } else {
-        appState.queue = vocabDatabase.filter(v => v.day === appState.day);
-    }
-    updateDisplay();
+    const container = document.getElementById('kanji-container');
+    const todayTarget = vocabularyData.slice(0, 25); // Ambil 25 kata pertama
+
+    todayTarget.forEach(item => {
+        const card = document.createElement('div');
+        card.className = "kanji-card bg-slate-800 p-4 rounded-xl border border-slate-700 text-center cursor-pointer group";
+        card.innerHTML = `
+            <div class="text-3xl font-bold mb-1">${item.kanji}</div>
+            <div class="text-xs text-indigo-400 opacity-0 group-hover:opacity-100 transition-opacity">${item.reading}</div>
+            <div class="text-xs text-slate-500 uppercase mt-1">${item.meaning}</div>
+        `;
+        container.appendChild(card);
+    });
+
+    // Update Progress
+    document.getElementById('progress-bar').style.width = `${(25 / 1500) * 100}%`;
+    document.getElementById('progress-text').innerText = `25 / 1500`;
 }
 
-function flipCard() {
-    document.getElementById('card').classList.toggle('flipped');
-    if(document.getElementById('card').classList.contains('flipped')) {
-        document.getElementById('card-controls').classList.add('visible');
-    }
-}
+// --- AI Logic (Gemini API) ---
+async function checkSentence() {
+    const userInput = document.getElementById('user-input').value;
+    const aiBox = document.getElementById('ai-response');
+    const key = localStorage.getItem('neko_api_key');
 
-function updateDisplay() {
-    if (appState.idx >= appState.queue.length) {
-        alert("Target hari ini tercapai!");
-        appState.day++;
-        localStorage.setItem('jlpt_n4_day', appState.day);
-        location.reload();
+    if (!key) {
+        alert("Masukkan API Key di Settings dulu!");
+        toggleSettings();
         return;
     }
 
-    const data = appState.queue[appState.idx];
-    document.getElementById('v-kanji').innerText = data.kanji;
-    document.getElementById('v-reading').innerText = data.reading;
-    document.getElementById('v-meaning').innerText = data.meaning;
-    document.getElementById('label-day').innerText = `DAY ${appState.day}`;
-    document.getElementById('label-count').innerText = `${appState.idx + 1} / ${appState.queue.length}`;
-    
-    document.getElementById('card').classList.remove('flipped');
-    document.getElementById('card-controls').classList.remove('visible');
-}
+    aiBox.innerHTML = "Neko-Sensei sedang berpikir... 🐾";
 
-function handleResult(good) {
-    const item = appState.queue[appState.idx];
-    if (good) {
-        if (!appState.mastered.includes(item.id)) appState.mastered.push(item.id);
-        appState.pool = appState.pool.filter(id => id !== item.id);
-        appState.idx++;
-    } else {
-        if (!appState.pool.includes(item.id)) appState.pool.push(item.id);
-        // Loop back: pindahkan ke akhir antrean hari ini
-        const current = appState.queue.splice(appState.idx, 1)[0];
-        appState.queue.push(current);
-    }
-    localStorage.setItem('jlpt_n4_mastered', JSON.stringify(appState.mastered));
-    localStorage.setItem('jlpt_n4_pool', JSON.stringify(appState.pool));
-    updateDisplay();
-}
+    const prompt = `Bertindaklah sebagai Neko-Sensei, pakar bahasa Jepang.
+    Bedah kalimat ini: "${userInput}".
+    Gunakan instruksi ini:
+    1. Berikan format HTML dengan class: <span class="subject"> untuk Subjek, <span class="particle"> untuk Partikel, <span class="object"> untuk Objek, <span class="verb"> untuk Kata Kerja.
+    2. Berikan penjelasan LOGIKA teks singkat (max 2 kalimat) tentang fungsi partikel di sana.
+    3. TANPA AUDIO/SUARA.`;
 
-function switchTab(tab) {
-    ['vocab', 'grammar', 'stats'].forEach(t => {
-        document.getElementById(`sec-${t}`).classList.toggle('hidden', t !== tab);
-        document.getElementById(`n-${t}`).classList.toggle('active', t === tab);
-    });
-    document.getElementById('h-title').innerText = tab.toUpperCase();
-    document.getElementById('card-controls').classList.remove('visible');
+    try {
+        const response = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=${key}`, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ contents: [{ parts: [{ text: prompt }] }] })
+        });
 
-    if (tab === 'grammar') {
-        document.getElementById('grammar-list').innerHTML = grammarDatabase.map(g => `
-            <div class="grammar-box">
-                <div style="color:var(--blue); font-weight:bold; font-size:15px;">${g.pattern}</div>
-                <div style="font-size:14px; margin:6px 0;">${g.meaning}</div>
-                <div style="font-size:12px; color:var(--dim);">Contoh: ${g.example}</div>
-            </div>
-        `).join('');
-    }
-    if (tab === 'stats') {
-        const p = (appState.mastered.length / 1500) * 100;
-        document.getElementById('p-bar').style.width = p + "%";
-        document.getElementById('p-text').innerText = `${appState.mastered.length} / 1500 WORDS`;
+        const data = await response.json();
+        const result = data.candidates[0].content.parts[0].text;
+        
+        // Render hasil AI (Gemini biasanya mengembalikan Markdown, kita bisa bersihkan jika perlu)
+        aiBox.innerHTML = result.replace(/```html|```/g, ''); 
+    } catch (err) {
+        aiBox.innerHTML = "Gagal memanggil Neko-Sensei. Cek API Key kamu.";
     }
 }
 
-initApp();
+// --- Settings Logic ---
+function toggleSettings() {
+    document.getElementById('settings-modal').classList.toggle('hidden');
+}
+
+function saveSettings() {
+    const val = document.getElementById('api-key-input').value;
+    localStorage.setItem('neko_api_key', val);
+    alert("Key disimpan secara lokal!");
+    toggleSettings();
+}
+
+// Jalankan saat load
+window.onload = initApp;

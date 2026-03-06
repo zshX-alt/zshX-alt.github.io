@@ -1,162 +1,39 @@
-:root {
-    /* Mengambil warna dari gambar yang kamu kirim */
-    --bg-darker: #1a1a1b;     /* Area atas yang gelap pekat */
-    --bg-lighter: #2d2d2e;    /* Area bawah yang abu-abu gelap */
-    --accent: #4a90e2;        /* Warna biru untuk tombol & progres */
-    --text-main: #e0e0e0;     /* Warna teks putih keabuan */
-    --text-dim: #a0a0a0;      /* Warna teks keterangan */
-    --success: #4caf50;
-}
-
-body {
-    font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
-    background-color: var(--bg-darker);
-    color: var(--text-main);
-    margin: 0;
-    padding: 20px;
-    line-height: 1.6;
-}
-
-.container {
-    max-width: 650px;
-    margin: 0 auto;
-}
-
-header h1 {
-    color: white;
-    text-align: center;
-    margin-bottom: 5px;
-}
-
-header p {
-    color: var(--text-dim);
-    text-align: center;
-    font-size: 0.9rem;
-    margin-bottom: 30px;
-}
-
-/* Dashboard Cards */
-.dashboard-grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 15px;
-    margin-bottom: 30px;
-}
-
-.card {
-    background-color: var(--bg-lighter);
-    padding: 20px;
-    border-radius: 12px;
-    border: 1px solid #3d3d3e;
-}
-
-.progress-info {
-    font-size: 1.2rem;
-    font-weight: bold;
-    margin-bottom: 10px;
-}
-
-.progress-bar {
-    background: #111;
-    height: 6px;
-    border-radius: 10px;
-    overflow: hidden;
-}
-
-.fill {
-    background: var(--accent);
-    height: 100%;
-    width: 0%;
-    transition: width 0.5s cubic-bezier(0.4, 0, 0.2, 1);
-}
-
-/* Tabs */
-.tabs {
-    display: flex;
-    gap: 10px;
-    margin-bottom: 20px;
-}
-
-.tabs button {
-    flex: 1;
-    background: var(--bg-lighter);
-    border: 1px solid #3d3d3e;
-    color: var(--text-dim);
-    padding: 12px;
-    border-radius: 8px;
-    cursor: pointer;
-    font-weight: 600;
-    transition: 0.3s;
-}
-
-.tabs button.active {
-    background: var(--accent);
-    color: white;
-    border-color: var(--accent);
-}
-
-/* List Items */
+/* Gaya baru untuk kartu yang belum/sudah dihafal */
 .item-card {
-    background: var(--bg-lighter);
-    margin-bottom: 12px;
-    padding: 15px;
-    border-radius: 10px;
+    border-left: 4px solid #444; /* Default: Abu-abu gelap */
+    transition: all 0.3s ease;
     display: flex;
+    justify-content: space-between;
     align-items: center;
-    cursor: pointer;
-    transition: transform 0.1s, background 0.2s;
-    border: 1px solid transparent;
-}
-
-.item-card:hover {
-    background: #363637;
 }
 
 .item-card.mastered {
-    border-color: var(--success);
-    background: #242b24; /* Hijau sangat gelap */
+    border-left-color: var(--success);
+    background: #1e2a1e !important; /* Hijau gelap halus */
+    opacity: 0.8;
 }
 
-.item-main {
-    font-size: 1.6rem;
-    font-weight: bold;
-    width: 80px;
-    color: white;
+.action-btns {
+    display: flex;
+    gap: 8px;
 }
 
-.item-detail {
-    flex: 1;
-}
-
-.item-detail small {
-    color: var(--accent);
-    letter-spacing: 1px;
-}
-
-.item-detail strong {
-    display: block;
-    color: var(--text-main);
-    font-size: 1rem;
-}
-
-.status-icon {
-    font-size: 1.2rem;
-}
-
-/* Footer / Reset */
-.btn-reset {
-    margin-top: 40px;
+.btn-check {
+    padding: 6px 12px;
+    border-radius: 6px;
+    border: 1px solid #444;
     background: transparent;
-    color: #ff5252;
-    border: 1px solid #ff5252;
-    padding: 10px;
-    width: 100%;
-    border-radius: 8px;
+    color: var(--text-dim);
     cursor: pointer;
-    opacity: 0.7;
+    font-size: 0.8rem;
 }
 
-.btn-reset:hover {
-    opacity: 1;
-    background: rgba(255, 82, 82, 0.1);
+.btn-check.active {
+    background: var(--success);
+    color: white;
+    border-color: var(--success);
+}
+
+.btn-check:hover {
+    border-color: var(--accent);
 }

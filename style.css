@@ -1,24 +1,41 @@
 :root {
-    --bg-color: #f4f7f6;
-    --primary: #4a90e2;
-    --success: #66bb6a;
-    --text: #2c3e50;
-    --card-bg: #ffffff;
+    /* Mengambil warna dari gambar yang kamu kirim */
+    --bg-darker: #1a1a1b;     /* Area atas yang gelap pekat */
+    --bg-lighter: #2d2d2e;    /* Area bawah yang abu-abu gelap */
+    --accent: #4a90e2;        /* Warna biru untuk tombol & progres */
+    --text-main: #e0e0e0;     /* Warna teks putih keabuan */
+    --text-dim: #a0a0a0;      /* Warna teks keterangan */
+    --success: #4caf50;
 }
 
 body {
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    background-color: var(--bg-color);
-    color: var(--text);
-    line-height: 1.6;
+    font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+    background-color: var(--bg-darker);
+    color: var(--text-main);
     margin: 0;
     padding: 20px;
+    line-height: 1.6;
 }
 
-.container { max-width: 700px; margin: 0 auto; }
+.container {
+    max-width: 650px;
+    margin: 0 auto;
+}
 
-header { text-align: center; margin-bottom: 30px; }
+header h1 {
+    color: white;
+    text-align: center;
+    margin-bottom: 5px;
+}
 
+header p {
+    color: var(--text-dim);
+    text-align: center;
+    font-size: 0.9rem;
+    margin-bottom: 30px;
+}
+
+/* Dashboard Cards */
 .dashboard-grid {
     display: grid;
     grid-template-columns: 1fr 1fr;
@@ -27,71 +44,119 @@ header { text-align: center; margin-bottom: 30px; }
 }
 
 .card {
-    background: var(--card-bg);
-    padding: 15px;
+    background-color: var(--bg-lighter);
+    padding: 20px;
     border-radius: 12px;
-    box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+    border: 1px solid #3d3d3e;
+}
+
+.progress-info {
+    font-size: 1.2rem;
+    font-weight: bold;
+    margin-bottom: 10px;
 }
 
 .progress-bar {
-    background: #e0e0e0;
-    height: 8px;
-    border-radius: 4px;
-    margin-top: 10px;
+    background: #111;
+    height: 6px;
+    border-radius: 10px;
     overflow: hidden;
 }
 
 .fill {
-    background: var(--primary);
+    background: var(--accent);
     height: 100%;
     width: 0%;
-    transition: width 0.4s ease;
+    transition: width 0.5s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-.tabs { display: flex; gap: 10px; margin-bottom: 20px; }
+/* Tabs */
+.tabs {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 20px;
+}
 
 .tabs button {
     flex: 1;
-    padding: 10px;
-    border: none;
-    background: #ddd;
+    background: var(--bg-lighter);
+    border: 1px solid #3d3d3e;
+    color: var(--text-dim);
+    padding: 12px;
     border-radius: 8px;
     cursor: pointer;
-    font-weight: bold;
+    font-weight: 600;
+    transition: 0.3s;
 }
 
-.tabs button.active { background: var(--primary); color: white; }
+.tabs button.active {
+    background: var(--accent);
+    color: white;
+    border-color: var(--accent);
+}
 
+/* List Items */
 .item-card {
-    background: white;
+    background: var(--bg-lighter);
+    margin-bottom: 12px;
     padding: 15px;
     border-radius: 10px;
-    margin-bottom: 10px;
     display: flex;
     align-items: center;
     cursor: pointer;
-    transition: 0.2s;
-    border-left: 5px solid #ccc;
+    transition: transform 0.1s, background 0.2s;
+    border: 1px solid transparent;
+}
+
+.item-card:hover {
+    background: #363637;
 }
 
 .item-card.mastered {
-    border-left-color: var(--success);
-    background: #f1f9f1;
+    border-color: var(--success);
+    background: #242b24; /* Hijau sangat gelap */
 }
 
-.item-main { font-size: 1.4rem; font-weight: bold; width: 70px; }
+.item-main {
+    font-size: 1.6rem;
+    font-weight: bold;
+    width: 80px;
+    color: white;
+}
 
-.item-detail { flex: 1; }
+.item-detail {
+    flex: 1;
+}
 
-.item-detail small { color: #7f8c8d; }
+.item-detail small {
+    color: var(--accent);
+    letter-spacing: 1px;
+}
 
+.item-detail strong {
+    display: block;
+    color: var(--text-main);
+    font-size: 1rem;
+}
+
+.status-icon {
+    font-size: 1.2rem;
+}
+
+/* Footer / Reset */
 .btn-reset {
-    margin-top: 30px;
-    background: none;
-    border: 1px solid #e74c3c;
-    color: #e74c3c;
-    padding: 8px 20px;
-    border-radius: 5px;
-    cursor: pointer;
+    margin-top: 40px;
+    background: transparent;
+    color: #ff5252;
+    border: 1px solid #ff5252;
+    padding: 10px;
     width: 100%;
+    border-radius: 8px;
+    cursor: pointer;
+    opacity: 0.7;
+}
+
+.btn-reset:hover {
+    opacity: 1;
+    background: rgba(255, 82, 82, 0.1);
 }

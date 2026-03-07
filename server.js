@@ -12,27 +12,31 @@ const groq = new Groq({
   apiKey: process.env.GROQ_API_KEY
 })
 
-app.post("/api/chat", async (req, res) => {
+app.get("/", (req,res)=>{
+  res.sendFile(process.cwd()+"/index.html")
+})
 
-  try {
+app.post("/api/chat", async (req,res)=>{
 
-    const message = req.body.message
+  try{
+
+    const userMessage = req.body.message
 
     const completion = await groq.chat.completions.create({
-      messages: [
+      messages:[
         {
-          role: "user",
-          content: message
+          role:"user",
+          content:userMessage
         }
       ],
-      model: "llama3-8b-8192"
+      model:"llama3-8b-8192"
     })
 
     res.json({
       reply: completion.choices[0].message.content
     })
 
-  } catch (err) {
+  }catch(err){
 
     res.status(500).json({
       error: err.message
@@ -44,6 +48,6 @@ app.post("/api/chat", async (req, res) => {
 
 const PORT = process.env.PORT || 3000
 
-app.listen(PORT, () => {
+app.listen(PORT, ()=>{
   console.log("Server running on port " + PORT)
 })

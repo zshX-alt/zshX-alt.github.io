@@ -6,39 +6,36 @@ const app = express()
 
 app.use(cors())
 app.use(express.json())
-app.use(express.static("."))
 
 const groq = new Groq({
   apiKey: process.env.GROQ_API_KEY
 })
 
 app.get("/", (req,res)=>{
-  res.sendFile(process.cwd()+"/index.html")
+  res.send("Server hidup")
 })
 
 app.post("/api/chat", async (req,res)=>{
 
-  try{
-
-    const userMessage = req.body.message
+  try {
 
     const completion = await groq.chat.completions.create({
-      messages:[
+      messages: [
         {
-          role:"user",
-          content:userMessage
+          role: "user",
+          content: req.body.message
         }
       ],
-      model:"llama3-8b-8192"
+      model: "llama3-8b-8192"
     })
 
     res.json({
       reply: completion.choices[0].message.content
     })
 
-  }catch(err){
+  } catch (err) {
 
-    res.status(500).json({
+    res.json({
       error: err.message
     })
 
@@ -48,6 +45,6 @@ app.post("/api/chat", async (req,res)=>{
 
 const PORT = process.env.PORT || 3000
 
-app.listen(PORT, ()=>{
-  console.log("Server running on port " + PORT)
+app.listen(PORT, () => {
+  console.log("Server running on port", PORT)
 })

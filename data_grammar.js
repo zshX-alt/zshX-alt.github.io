@@ -94,4 +94,4 @@ const N4_GRAMMAR = {
     "g78": { id: "g78", kanji: "～ことにする", baca: "V-Kamus + koto ni suru", arti: "Memutuskan untuk... | Contoh: 毎日走ることにしました", type: "grammar", state: "new", last: null },
     "g79": { id: "g79", kanji: "～お～ください", baca: "O + V-masu + kudasai", arti: "Silakan... (Hormat) | Contoh: お座りください", type: "grammar", state: "new", last: null },
     "g80": { id: "g80", kanji: "～てくる / ～ていく", baca: "V-te + kuru/iku", arti: "Datang/Pergi melakukan... | Contoh: コンビニへ行ってきます", type: "grammar", state: "new", last: null }
-};
+};.

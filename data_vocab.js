@@ -1,0 +1,61 @@
+const N4_VOCAB = {
+    // --- VERBS (KATA KERJA) ---
+    "v01": { id: "v01", kanji: "案内する", baca: "annai suru", arti: "memandu/mengantar", type: "vocab", state: "new", last: null },
+    "v02": { id: "v02", kanji: "準備する", baca: "junbi suru", arti: "bersiap-siap", type: "vocab", state: "new", last: null },
+    "v03": { id: "v03", kanji: "相談する", baca: "soudan suru", arti: "berkonsultasi", type: "vocab", state: "new", last: null },
+    "v04": { id: "v04", kanji: "連絡する", baca: "renraku suru", arti: "menghubungi", type: "vocab", state: "new", last: null },
+    "v05": { id: "v05", kanji: "注意する", baca: "chuui suru", arti: "berhati-hati/peringatan", type: "vocab", state: "new", last: null },
+    "v06": { id: "v06", kanji: "反対する", baca: "hantai suru", arti: "menentang/tidak setuju", type: "vocab", state: "new", last: null },
+    "v07": { id: "v07", kanji: "出席する", baca: "shusseki suru", arti: "menghadiri", type: "vocab", state: "new", last: null },
+    "v08": { id: "v08", kanji: "失敗する", baca: "shippai suru", arti: "gagal", type: "vocab", state: "new", last: null },
+    "v09": { id: "v09", kanji: "返事する", baca: "henji suru", arti: "menjawab/membalas", type: "vocab", state: "new", last: null },
+    "v10": { id: "v10", kanji: "予約する", baca: "yoyaku suru", arti: "memesan/reservasi", type: "vocab", state: "new", last: null },
+    "v11": { id: "v11", kanji: "遅れる", baca: "okureru", arti: "terlambat", type: "vocab", state: "new", last: null },
+    "v12": { id: "v12", kanji: "間に合う", baca: "maniau", arti: "keburu/sempat", type: "vocab", state: "new", last: null },
+    "v13": { id: "v13", kanji: "拾う", baca: "hirou", arti: "memungut/mengambil", type: "vocab", state: "new", last: null },
+    "v14": { id: "v14", kanji: "下りる", baca: "oriru", arti: "turun", type: "vocab", state: "new", last: null },
+    "v15": { id: "v15", kanji: "泊まる", baca: "tomaru", arti: "menginap", type: "vocab", state: "new", last: null },
+    "v16": { id: "v16", kanji: "運ぶ", baca: "hakobu", arti: "mengangkut/membawa", type: "vocab", state: "new", last: null },
+    "v17": { id: "v17", kanji: "片付ける", baca: "katazukeru", arti: "membereskan", type: "vocab", state: "new", last: null },
+    "v18": { id: "v18", kanji: "調べる", baca: "shiraberu", arti: "memeriksa/meneliti", type: "vocab", state: "new", last: null },
+    "v19": { id: "v19", kanji: "捨てる", baca: "suteru", arti: "membuang", type: "vocab", state: "new", last: null },
+    "v20": { id: "v20", kanji: "換える", baca: "kaeru", arti: "menukar/mengganti", type: "vocab", state: "new", last: null },
+
+    // --- NOUNS (KATA BENDA) ---
+    "v21": { id: "v21", kanji: "道具", baca: "dougu", arti: "alat/perkakas", type: "vocab", state: "new", last: null },
+    "v22": { id: "v22", kanji: "場所", baca: "basho", arti: "tempat", type: "vocab", state: "new", last: null },
+    "v23": { id: "v23", kanji: "都合", baca: "tsugou", arti: "kondisi waktu/keadaan", type: "vocab", state: "new", last: null },
+    "v24": { id: "v24", kanji: "予定", baca: "yotei", arti: "rencana/jadwal", type: "vocab", state: "new", last: null },
+    "v25": { id: "v25", kanji: "習慣", baca: "shuukan", arti: "kebiasaan", type: "vocab", state: "new", last: null },
+    "v26": { id: "v26", kanji: "経験", baca: "keiken", arti: "pengalaman", type: "vocab", state: "new", last: null },
+    "v27": { id: "v27", kanji: "景色", baca: "keshiki", arti: "pemandangan", type: "vocab", state: "new", last: null },
+    "v28": { id: "v28", kanji: "台所", baca: "daidokoro", arti: "dapur", type: "vocab", state: "new", last: null },
+    "v29": { id: "v29", kanji: "近所", baca: "kinjo", arti: "tetangga/sekitar rumah", type: "vocab", state: "new", last: null },
+    "v30": { id: "v30", kanji: "半分", baca: "hanbun", arti: "setengah", type: "vocab", state: "new", last: null },
+    "v31": { id: "v31", kanji: "理由", baca: "riyuu", arti: "alasan", type: "vocab", state: "new", last: null },
+    "v32": { id: "v32", kanji: "意味", baca: "imi", arti: "arti/makna", type: "vocab", state: "new", last: null },
+    "v33": { id: "v33", kanji: "将来", baca: "shourai", arti: "masa depan", type: "vocab", state: "new", last: null },
+    "v34": { id: "v34", kanji: "自分", baca: "jibun", arti: "diri sendiri", type: "vocab", state: "new", last: null },
+    "v35": { id: "v35", kanji: "具合", baca: "guai", arti: "kondisi kesehatan", type: "vocab", state: "new", last: null },
+    
+    // --- ADJECTIVES (KATA SIFAT) ---
+    "v36": { id: "v36", kanji: "特別", baca: "tokubetsu", arti: "spesial/khusus", type: "vocab", state: "new", last: null },
+    "v37": { id: "v37", kanji: "熱心", baca: "nesshin", arti: "tekun/rajin", type: "vocab", state: "new", last: null },
+    "v38": { id: "v38", kanji: "丁寧", baca: "teinei", arti: "sopan", type: "vocab", state: "new", last: null },
+    "v39": { id: "v39", kanji: "適当", baca: "tekitou", arti: "cocok/pantas", type: "vocab", state: "new", last: null },
+    "v40": { id: "v40", kanji: "複雑", baca: "fukuzatsu", arti: "rumit/kompleks", type: "vocab", state: "new", last: null },
+    "v41": { id: "v41", kanji: "細かい", baca: "komakai", arti: "detail/kecil-kecil", type: "vocab", state: "new", last: null },
+    "v42": { id: "v42", kanji: "浅い", baca: "asai", arti: "dangkal", type: "vocab", state: "new", last: null },
+    "v43": { id: "v43", kanji: "苦い", baca: "nigai", arti: "pahit", type: "vocab", state: "new", last: null },
+    "v44": { id: "v44", kanji: "珍しい", baca: "mezurashii", arti: "langka", type: "vocab", state: "new", last: null },
+    "v45": { id: "v45", kanji: "恥ずかしい", baca: "hazukashii", arti: "malu", type: "vocab", state: "new", last: null },
+
+    // --- ADVERBS & OTHERS ---
+    "v46": { id: "v46", kanji: "全然", baca: "zenzen", arti: "sama sekali tidak", type: "vocab", state: "new", last: null },
+    "v47": { id: "v47", kanji: "多分", baca: "tabun", arti: "mungkin", type: "vocab", state: "new", last: null },
+    "v48": { id: "v48", kanji: "是非", baca: "zehi", arti: "benar-benar/tentu saja", type: "vocab", state: "new", last: null },
+    "v49": { id: "v49", kanji: "必ず", baca: "kanarazu", arti: "pasti", type: "vocab", state: "new", last: null },
+    "v50": { id: "v50", kanji: "直接", baca: "chokusetsu", arti: "langsung", type: "vocab", state: "new", last: null },
+    
+    // (Lanjutkan sampai v100 dengan format yang sama...)
+};

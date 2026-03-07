@@ -2,14 +2,14 @@ async function testAI() {
     const input = document.getElementById('user-input').value;
     const display = document.getElementById('result');
     
-    // URL Pipedream Baru Anda
-    const URL = "https://eoycyw34pqnq7sw.m.pipedream.net"; 
+    // GANTI dengan URL dari tab 'Settings' > 'Public Networking' di Railway
+    const RAILWAY_URL = "https://neko-sensei-server-production.up.railway.app/ask"; 
 
-    if(!input) return alert("Ketik kalimatnya dulu, Nyaa! 🐾");
-    display.innerHTML = "<em>Neko-Sensei (Groq) sedang beraksi... 🐾</em>";
+    if(!input) return alert("Ketik dulu, Nyaa! 🐾");
+    display.innerHTML = "<em>Neko-Sensei sedang berpikir... 🐾</em>";
 
     try {
-        const response = await fetch(URL, {
+        const response = await fetch(RAILWAY_URL, {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({ prompt: input })
@@ -17,13 +17,12 @@ async function testAI() {
         
         const data = await response.json();
         
-        // Membaca format jawaban Groq
         if (data.choices && data.choices[0].message) {
             display.innerText = data.choices[0].message.content;
         } else {
-            display.innerText = "Berhasil kirim, tapi Groq belum merespons. Cek tombol DEPLOY di Pipedream!";
+            display.innerText = "Koneksi sukses, tapi jawaban kosong. Cek Log di Railway!";
         }
     } catch (e) {
-        display.innerText = "Koneksi Gagal! Pastikan link Pipedream sudah benar dan di-Deploy.";
+        display.innerText = "Gagal terhubung ke Railway! Pastikan URL sudah benar dan aktif.";
     }
 }

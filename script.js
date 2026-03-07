@@ -1,41 +1,30 @@
-async function send() {
-    const input = document.getElementById("input");
-    const message = input.value;
+async function send(){
 
-    if (!message) return;
+const input = document.getElementById("input")
+const message = input.value
 
-    const messages = document.getElementById("messages");
-    
-    // Tampilkan pesan user di layar
-    messages.innerHTML += `<p><b>You:</b> ${message}</p>`;
+if(!message) return
 
-    try {
-        // GANTI dengan URL Railway Anda + /ask
-        const RAILWAY_URL = "https://zshx-altgithubio-production.up.railway.app/ask"; 
+const messages = document.getElementById("messages")
 
-        const res = await fetch(RAILWAY_URL, {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json"
-            },
-            body: JSON.stringify({
-                prompt: message // Harus 'prompt' agar nyambung ke server.js
-            })
-        });
+messages.innerHTML += `<p><b>You:</b> ${message}</p>`
 
-        const data = await res.json();
+const res = await fetch("/api/chat",{
+method:"POST",
+headers:{
+"Content-Type":"application/json"
+},
+body:JSON.stringify({
+message:message
+})
+})
 
-        // Railway mengirim balik data dalam format Groq (choices[0].message.content)
-        if (data.choices && data.choices[0].message) {
-            messages.innerHTML += `<p><b>AI:</b> ${data.choices[0].message.content}</p>`;
-        } else {
-            messages.innerHTML += `<p><b>AI:</b> Maaf, Neko-Sensei sedang bingung. 🐾</p>`;
-        }
+const data = await res.json()
 
-    } catch (error) {
-        messages.innerHTML += `<p style="color:red"><b>Error:</b> Gagal terhubung ke server Railway! 🐾</p>`;
-    }
+messages.innerHTML += `<p><b>AI:</b> ${data.reply}</p>`
 
-    input.value = "";
-    messages.scrollTop = messages.scrollHeight;
+input.value=""
+
+messages.scrollTop = messages.scrollHeight
+
 }

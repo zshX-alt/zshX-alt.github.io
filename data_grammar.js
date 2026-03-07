@@ -1,16 +1,97 @@
 const N4_GRAMMAR = {
-    "g01": { 
-        id: "g01", 
-        kanji: "～たい", 
-        baca: "V-masu + tai", 
-        arti: "Ingin... | Contoh: 寿司を食べたい", 
-        type: "grammar", state: "new", last: null 
-    },
-    "g02": { 
-        id: "g02", 
-        kanji: "～ながら", 
-        baca: "V-masu + nagara", 
-        arti: "Sambil... | Contoh: 歩きながら電話する", 
-        type: "grammar", state: "new", last: null 
-    }
+    // 1-10: Keinginan, Perintah & Izin
+    "g01": { id: "g01", kanji: "～たい", baca: "V-masu + tai", arti: "Ingin... | Contoh: 日本へ行きたい", type: "grammar", state: "new", last: null },
+    "g02": { id: "g02", kanji: "～ながら", baca: "V-masu + nagara", arti: "Sambil... | Contoh: 歩きながら話す", type: "grammar", state: "new", last: null },
+    "g03": { id: "g03", kanji: "～てください", baca: "V-te + kudasai", arti: "Tolong... | Contoh: ここで待ってください", type: "grammar", state: "new", last: null },
+    "g04": { id: "g04", kanji: "～てもいいです", baca: "V-te + mo ii desu", arti: "Boleh... | Contoh: 写真を撮ってもいいです", type: "grammar", state: "new", last: null },
+    "g05": { id: "g05", kanji: "～てはいけません", baca: "V-te + wa ikemasen", arti: "Tidak boleh... | Contoh: 入ってはいけません", type: "grammar", state: "new", last: null },
+    "g06": { id: "g06", kanji: "～てくださいませんか", baca: "V-te + kudasaimasenka", arti: "Maukah tolong... (Sopan) | Contoh: 教えてくださいませんか", type: "grammar", state: "new", last: null },
+    "g07": { id: "g07", kanji: "～なければなりません", baca: "V-nai + kereba narimasen", arti: "Harus... | Contoh: 宿題をしなければなりません", type: "grammar", state: "new", last: null },
+    "g08": { id: "g08", kanji: "～なくてもいいです", baca: "V-nai + nakutemo ii desu", arti: "Tidak perlu... | Contoh: 急がなくてもいいです", type: "grammar", state: "new", last: null },
+    "g09": { id: "g09", kanji: "～ておく", baca: "V-te + oku", arti: "Melakukan persiapan... | Contoh: 準備しておく", type: "grammar", state: "new", last: null },
+    "g10": { id: "g10", kanji: "～てしまう", baca: "V-te + shimau", arti: "Terlanjur/Selesai... | Contoh: 忘れてしまいました", type: "grammar", state: "new", last: null },
+
+    // 11-20: Pengalaman & Rencana
+    "g11": { id: "g11", kanji: "～たことがあります", baca: "V-ta + koto ga arimasu", arti: "Pernah... | Contoh: 寿司を食べたことがあります", type: "grammar", state: "new", last: null },
+    "g12": { id: "g12", kanji: "～たほうがいいです", baca: "V-ta + hou ga ii desu", arti: "Lebih baik... | Contoh: 早く帰ったほうがいいです", type: "grammar", state: "new", last: null },
+    "g13": { id: "g13", kanji: "～ないほうがいいです", baca: "V-nai + hou ga ii desu", arti: "Lebih baik tidak... | Contoh: 触らないほうがいいです", type: "grammar", state: "new", last: null },
+    "g14": { id: "g14", kanji: "～つもりです", baca: "V-Kamus + tsumori desu", arti: "Berniat... | Contoh: 来月結婚するつもりです", type: "grammar", state: "new", last: null },
+    "g15": { id: "g15", kanji: "～予定です", baca: "V-Kamus / N-no + yotei desu", arti: "Jadwalnya adalah... | Contoh: 出張は来週の予定です", type: "grammar", state: "new", last: null },
+    "g16": { id: "g16", kanji: "～たり～たりする", baca: "V-ta + ri suru", arti: "Melakukan kegiatan... dsb | Contoh: 歌ったり踊ったりします", type: "grammar", state: "new", last: null },
+    "g17": { id: "g17", kanji: "～ようになります", baca: "V-Kamus + you ni narimasu", arti: "Menjadi bisa... | Contoh: 日本語が話せるようになります", type: "grammar", state: "new", last: null },
+    "g18": { id: "g18", kanji: "～ようとしています", baca: "V-Maksud + tou shite imasu", arti: "Sedang mencoba/akan... | Contoh: 寝ようとしています", type: "grammar", state: "new", last: null },
+    "g19": { id: "g19", kanji: "～そうです (Hearsay)", baca: "Bentuk Biasa + sou desu", arti: "Katanya... | Contoh: 明日は雨だそうです", type: "grammar", state: "new", last: null },
+    "g20": { id: "g20", kanji: "～そうです (Look like)", baca: "V-masu/Adj + sou desu", arti: "Kelihatannya... | Contoh: 美味しそうです", type: "grammar", state: "new", last: null },
+
+    // 21-30: Dugaan & Kemungkinan
+    "g21": { id: "g21", kanji: "～でしょう", baca: "Bentuk Biasa + deshou", arti: "Mungkin... | Contoh: 明日は晴れるでしょう", type: "grammar", state: "new", last: null },
+    "g22": { id: "g22", kanji: "～かもしれません", baca: "Bentuk Biasa + kamoshiremasen", arti: "Mungkin saja... | Contoh: 遅れるかもしれません", type: "grammar", state: "new", last: null },
+    "g23": { id: "g23", kanji: "～はずです", baca: "Bentuk Biasa + hazu desu", arti: "Seharusnya... | Contoh: 彼はもう着くはずです", type: "grammar", state: "new", last: null },
+    "g24": { id: "g24", kanji: "～はずがありません", baca: "Bentuk Biasa + hazu ga arimasen", arti: "Tidak mungkin... | Contoh: そんなはずがありません", type: "grammar", state: "new", last: null },
+    "g25": { id: "g25", kanji: "～みたいです", baca: "N / Bentuk Biasa + mitai desu", arti: "Sepertinya/Mirip... | Contoh: 夢みたいです", type: "grammar", state: "new", last: null },
+    "g26": { id: "g26", kanji: "～らしいです", baca: "N / Bentuk Biasa + rashii desu", arti: "Khas/Sepertinya... | Contoh: 雨らしいです", type: "grammar", state: "new", last: null },
+    "g27": { id: "g27", kanji: "～ようです", baca: "Bentuk Biasa + you desu", arti: "Nampaknya... | Contoh: 故障したようです", type: "grammar", state: "new", last: null },
+    "g28": { id: "g28", kanji: "～し～し", baca: "Bentuk Biasa + shi", arti: "Sudah... apalagi... | Contoh: 安いし、近いし", type: "grammar", state: "new", last: null },
+    "g29": { id: "g29", kanji: "～すぎる", baca: "V-masu / Adj + sugiru", arti: "Terlalu... | Contoh: 飲みすぎました", type: "grammar", state: "new", last: null },
+    "g30": { id: "g30", kanji: "～やすい / ～にくい", baca: "V-masu + yasui/nikui", arti: "Mudah/Sulit... | Contoh: 分かりやすいです", type: "grammar", state: "new", last: null },
+
+    // 31-40: Urutan & Sebab-Akibat
+    "g31": { id: "g31", kanji: "～てから", baca: "V-te + kara", arti: "Setelah... | Contoh: 手を洗ってから食べます", type: "grammar", state: "new", last: null },
+    "g32": { id: "g32", kanji: "～あとで", baca: "V-ta / N-no + ato de", arti: "Setelah... | Contoh: 仕事のあとで", type: "grammar", state: "new", last: null },
+    "g33": { id: "g33", kanji: "～まえに", baca: "V-Kamus / N-no + mae ni", arti: "Sebelum... | Contoh: 寝る前に", type: "grammar", state: "new", last: null },
+    "g34": { id: "g34", kanji: "～うちに", baca: "V-Kamus / Adj / N-no + uchi ni", arti: "Selagi... | Contoh: 若いうちに勉強しなさい", type: "grammar", state: "new", last: null },
+    "g35": { id: "g35", kanji: "～ために", baca: "V-Kamus / N-no + tame ni", arti: "Demi/Untuk... | Contoh: 健康のために走ります", type: "grammar", state: "new", last: null },
+    "g36": { id: "g36", kanji: "～ように", baca: "V-Kamus / V-nai + you ni", arti: "Agar/Supaya... | Contoh: 忘れないようにメモします", type: "grammar", state: "new", last: null },
+    "g37": { id: "g37", kanji: "～おかげで", baca: "Bentuk Biasa + okage de", arti: "Berkat... | Contoh: 先生のおかげで合格しました", type: "grammar", state: "new", last: null },
+    "g38": { id: "g38", kanji: "～せいで", baca: "Bentuk Biasa + sei de", arti: "Gara-gara... | Contoh: 雨のせいで遅れました", type: "grammar", state: "new", last: null },
+    "g39": { id: "g39", kanji: "～のなら", baca: "Bentuk Biasa + no nara", arti: "Kalau... | Contoh: 嫌いなら食べなくてもいい", type: "grammar", state: "new", last: null },
+    "g40": { id: "g40", kanji: "～（た）ら", baca: "V-ta + ra", arti: "Jika/Setelah... | Contoh: 着いたら電話します", type: "grammar", state: "new", last: null },
+
+    // 41-50: Pasif, Kausatif, Keigo
+    "g41": { id: "g41", kanji: "～られる (Passive)", baca: "V-Passive", arti: "Di... (Pasif) | Contoh: 泥棒に財布を盗まれた", type: "grammar", state: "new", last: null },
+    "g42": { id: "g42", kanji: "～させる (Causative)", baca: "V-Causative", arti: "Menyuruh/Membiarkan... | Contoh: 子供に野菜を食べさせる", type: "grammar", state: "new", last: null },
+    "g43": { id: "g43", kanji: "～させられる", baca: "V-Causative Passive", arti: "Dipaksa untuk... | Contoh: 走らされました", type: "grammar", state: "new", last: null },
+    "g44": { id: "g44", kanji: "尊敬語 (Sonkeigo)", baca: "O/Go-N ni narimasu", arti: "Hormat (Untuk orang lain) | Contoh: 社長がお帰りになります", type: "grammar", state: "new", last: null },
+    "g45": { id: "g45", kanji: "謙譲語 (Kenjougo)", baca: "O/Go-N shimasu", arti: "Rendah hati (Untuk diri sendiri) | Contoh: お荷物をお持ちします", type: "grammar", state: "new", last: null },
+    "g46": { id: "g46", kanji: "～てくださる", baca: "V-te + kudasaru", arti: "Orang lain melakukan (untuk saya - Hormat) | Contoh: 先生が貸してくださいました", type: "grammar", state: "new", last: null },
+    "g47": { id: "g47", kanji: "～てあげる", baca: "V-te + ageru", arti: "Melakukan untuk orang lain | Contoh: 傘を貸してあげます", type: "grammar", state: "new", last: null },
+    "g48": { id: "g48", kanji: "～てもらう", baca: "V-te + morau", arti: "Menerima kebaikan orang lain | Contoh: 友達に直してもらった", type: "grammar", state: "new", last: null },
+    "g49": { id: "g49", kanji: "～てくれる", baca: "V-te + kureru", arti: "Orang lain melakukan untuk saya | Contoh: 妹が送ってくれました", type: "grammar", state: "new", last: null },
+    "g50": { id: "g50", kanji: "～てさしあげる", baca: "V-te + sashiageru", arti: "Melakukan untuk orang lain (Sopan) | Contoh: お茶を淹れてさしあげました", type: "grammar", state: "new", last: null },
+
+    // 51-60: Kondisional & Batasan
+    "g51": { id: "g51", kanji: "～ば", baca: "V-eba", arti: "Jika... | Contoh: 行けば分かります", type: "grammar", state: "new", last: null },
+    "g52": { id: "g52", kanji: "～と", baca: "V-Kamus + to", arti: "Jika/Pasti (Alamiah) | Contoh: 春になると花が咲く", type: "grammar", state: "new", last: null },
+    "g53": { id: "g53", kanji: "～なら", baca: "N + nara", arti: "Kalau... (Topik) | Contoh: カメラならこれがいいよ", type: "grammar", state: "new", last: null },
+    "g54": { id: "g54", kanji: "～ても", baca: "V-te + mo", arti: "Meskipun... | Contoh: 雨が降っても行きます", type: "grammar", state: "new", last: null },
+    "g55": { id: "g55", kanji: "～の（ん）です", baca: "Bentuk Biasa + no desu", arti: "Penekanan alasan... | Contoh: 頭が痛いんです", type: "grammar", state: "new", last: null },
+    "g56": { id: "g56", kanji: "～という～", baca: "N + to iu + N", arti: "Yang bernama... | Contoh: 田中という人", type: "grammar", state: "new", last: null },
+    "g57": { id: "g57", kanji: "～の", baca: "V-Kamus + no", arti: "Mengubah kata kerja jadi benda | Contoh: 泳ぐのが好きです", type: "grammar", state: "new", last: null },
+    "g58": { id: "g58", kanji: "～こと", baca: "V-Kamus + koto", arti: "Hal/Perihal... | Contoh: 食べることが大切です", type: "grammar", state: "new", last: null },
+    "g59": { id: "g59", kanji: "～までに", baca: "V-Kamus / N + made ni", arti: "Paling lambat... | Contoh: 5時までに来てください", type: "grammar", state: "new", last: null },
+    "g60": { id: "g60", kanji: "～間に (Aida ni)", baca: "V-te iru / N-no + aida ni", arti: "Selama/Di sela-sela... | Contoh: 留守の間に泥棒が入った", type: "grammar", state: "new", last: null },
+
+    // 61-70: Keterangan Tambahan
+    "g61": { id: "g61", kanji: "～ばかり", baca: "N + bakari", arti: "Hanya... terus | Contoh: 遊んでばかりいる", type: "grammar", state: "new", last: null },
+    "g62": { id: "g62", kanji: "～たばかり", baca: "V-ta + bakari", arti: "Baru saja... | Contoh: さっき食べたばかりです", type: "grammar", state: "new", last: null },
+    "g63": { id: "g63", kanji: "～ところです", baca: "V-Kamus + tokoro desu", arti: "Baru mau... | Contoh: 今から行くところです", type: "grammar", state: "new", last: null },
+    "g64": { id: "g64", kanji: "～ているところです", baca: "V-te + iru tokoro desu", arti: "Sedang melakukan... | Contoh: 今調べているところです", type: "grammar", state: "new", last: null },
+    "g65": { id: "g65", kanji: "～たところです", baca: "V-ta + tokoro desu", arti: "Baru saja selesai... | Contoh: 今帰ったところです", type: "grammar", state: "new", last: null },
+    "g66": { id: "g66", kanji: "～のに", baca: "Bentuk Biasa + no ni", arti: "Padahal... | Contoh: 勉強したのに、不合格だった", type: "grammar", state: "new", last: null },
+    "g67": { id: "g67", kanji: "～ように言う", baca: "V-Kamus / V-nai + you ni iu", arti: "Menyuruh agar... | Contoh: 忘れないように言ってください", type: "grammar", state: "new", last: null },
+    "g68": { id: "g68", kanji: "～はずだ", baca: "Bentuk Biasa + hazu da", arti: "Semestinya... | Contoh: 今日は休みのはずだ", type: "grammar", state: "new", last: null },
+    "g69": { id: "g69", kanji: "～はずがない", baca: "Bentuk Biasa + hazu ga nai", arti: "Mana mungkin... | Contoh: 彼が犯人のはずがない", type: "grammar", state: "new", last: null },
+    "g70": { id: "g70", kanji: "～ようだ", baca: "N-no / V-Kamus + you da", arti: "Sepertinya... | Contoh: 火事のようだ", type: "grammar", state: "new", last: null },
+
+    // 71-80: Variasi & Pemantapan
+    "g71": { id: "g71", kanji: "～がる", baca: "Adj + garu", arti: "Kelihatannya merasa... | Contoh: 寒がっています", type: "grammar", state: "new", last: null },
+    "g72": { id: "g72", kanji: "～（だ）ろう", baca: "Bentuk Biasa + darou", arti: "Mungkin (Informal deshou) | Contoh: 明日は雨だろう", type: "grammar", state: "new", last: null },
+    "g73": { id: "g73", kanji: "～（な）さすぎる", baca: "Adj + sa sugiru", arti: "Terlalu tidak... | Contoh: 不便すぎる", type: "grammar", state: "new", last: null },
+    "g74": { id: "g74", kanji: "～（さ）せる (Passive)", baca: "V-Causative", arti: "Membuat orang merasa... | Contoh: びっくりさせる", type: "grammar", state: "new", last: null },
+    "g75": { id: "g75", kanji: "～てほしい", baca: "V-te + hoshii", arti: "Ingin orang lain melakukan... | Contoh: 教えてほしい", type: "grammar", state: "new", last: null },
+    "g76": { id: "g76", kanji: "～なさい", baca: "V-masu + nasai", arti: "Perintah (Tegas/Ortu) | Contoh: 食べなさい", type: "grammar", state: "new", last: null },
+    "g77": { id: "g77", kanji: "～ことになっている", baca: "V-Kamus + koto ni natte iru", arti: "Sudah diputuskan bahwa... | Contoh: 寮では10時に寝ることになっている", type: "grammar", state: "new", last: null },
+    "g78": { id: "g78", kanji: "～ことにする", baca: "V-Kamus + koto ni suru", arti: "Memutuskan untuk... | Contoh: 毎日走ることにしました", type: "grammar", state: "new", last: null },
+    "g79": { id: "g79", kanji: "～お～ください", baca: "O + V-masu + kudasai", arti: "Silakan... (Hormat) | Contoh: お座りください", type: "grammar", state: "new", last: null },
+    "g80": { id: "g80", kanji: "～てくる / ～ていく", baca: "V-te + kuru/iku", arti: "Datang/Pergi melakukan... | Contoh: コンビニへ行ってきます", type: "grammar", state: "new", last: null }
 };

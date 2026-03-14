@@ -3,61 +3,26 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Master JLPT | Full Kanji & Hiragana</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <style>
-        body { background-color: #0f172a; color: #e2e8f0; }
-        .materi-card { background-color: #1e293b; border-left: 4px solid #6366f1; }
-        .jp-kanji { color: #f8fafc; font-size: 1.2rem; font-weight: bold; }
-        .jp-kana { color: #818cf8; font-size: 0.9rem; }
-        .meaning { color: #94a3b8; font-style: italic; font-size: 0.85rem; margin-bottom: 0.5rem; }
-    </style>
+    <title>Kitab Suci JLPT</title>
+    <link rel="stylesheet" href="style.css">
 </head>
-<body class="p-4 md:p-8">
-    <div class="max-w-3xl mx-auto" id="content"></div>
+<body>
+    <h1>Master JLPT Hub</h1>
+    <div id="app"></div>
 
+    <script src="data.js"></script>
     <script>
-        const JLPT_Data = {
-            "JLPT N5 (Dasar)": [
-                { jdl: "1. Sentence Structure", jepang: "私は学校に行きます。", baca: "Watashi wa gakkou ni ikimasu.", arti: "Saya pergi ke sekolah." },
-                { jdl: "2. Particles (Wa/O/De/Ni)", jepang: "カフェでラーメンを食べます。", baca: "Kafe de ramen o tabemasu.", arti: "Makan ramen di kafe." },
-                { jdl: "3. Verb Masu Form", jepang: "本を読みます。", baca: "Hon o yomimasu.", arti: "Membaca buku." },
-                { jdl: "4. Adjectives", jepang: "この花はきれいです。", baca: "Kono hana wa kirei desu.", arti: "Bunga ini indah." },
-                { jdl: "5. Question (Ka)", jepang: "これは何ですか。", baca: "Kore wa nan desu ka?", arti: "Ini apa?" },
-                { jdl: "6. Demonstratives", jepang: "それは私の車です。", baca: "Sore wa watashi no kuruma desu.", arti: "Itu mobil saya." },
-                { jdl: "7. Basic Expressions", jepang: "おはようございます。", baca: "Ohayou gozaimasu.", arti: "Selamat pagi." },
-                { jdl: "8. Conversation", jepang: "お元気ですか。", baca: "O-genki desu ka?", arti: "Apa kabar?" },
-                { jdl: "9. Nominal Patterns", jepang: "私は学生じゃありません。", baca: "Watashi wa gakusei ja arimasen.", arti: "Saya bukan siswa." }
-            ],
-            "JLPT N4 (Menengah)": [
-                { jdl: "1. Verb Conjugations", jepang: "手紙を書きます。", baca: "Tegami o kakimasu.", arti: "Menulis surat." },
-                { jdl: "2. Te-Form", jepang: "ちょっと待ってください。", baca: "Chotto matte kudasai.", arti: "Tolong tunggu sebentar." },
-                { jdl: "3. Plain Form", jepang: "明日、映画を見る。", baca: "Ashita, eiga o miru.", arti: "Besok, nonton film." },
-                { jdl: "4. Potential", jepang: "日本語が話せます。", baca: "Nihongo ga hanasemasu.", arti: "Bisa bahasa Jepang." },
-                { jdl: "5. Comparisons", jepang: "車は自転車より速いです。", baca: "Kuruma wa jitensha yori hayai desu.", arti: "Mobil lebih cepat dari sepeda." },
-                { jdl: "6. Conditional", jepang: "雨が降ったら、行きません。", baca: "Ame ga futtara, ikimasen.", arti: "Kalau hujan, saya tidak pergi." },
-                { jdl: "7. Give/Receive", jepang: "友達にプレゼントをあげました。", baca: "Tomodachi ni purezento o agemashita.", arti: "Memberi hadiah ke teman." },
-                { jdl: "8. Reasons", jepang: "暑いので、窓を開けます。", baca: "Atsui node, mado o akemasu.", arti: "Karena panas, buka jendela." },
-                { jdl: "9. Permission", jepang: "ここで食べてはいけません。", baca: "Koko de tabete wa ikemasen.", arti: "Dilarang makan di sini." },
-                { jdl: "10. Experience", jepang: "日本に行ったことがあります。", baca: "Nihon ni itta koto ga arimasu.", arti: "Pernah pergi ke Jepang." },
-                { jdl: "11. Guessing", jepang: "雨が降りそうです。", baca: "Ame ga furisou desu.", arti: "Sepertinya akan hujan." },
-                { jdl: "12. Transformation", jepang: "寒くなります。", baca: "Samuku narimasu.", arti: "Menjadi dingin." },
-                { jdl: "13. Purpose", jepang: "日本に行くつもりです。", baca: "Nihon ni iku tsumori desu.", arti: "Berniat pergi ke Jepang." },
-                { jdl: "14. Sequence", jepang: "手を洗ってから、食べます。", baca: "Te o aratte kara, tabemasu.", arti: "Cuci tangan dulu, baru makan." },
-                { jdl: "15. Keigo (Sopan)", jepang: "お帰りなさいませ。", baca: "O-kaeri nasaimase.", arti: "Selamat datang kembali (Sangat formal)." }
-            ]
-        };
-
-        const content = document.getElementById('content');
-        for (const [section, items] of Object.entries(JLPT_Data)) {
-            content.innerHTML += `<h2 class="text-xl font-black text-indigo-400 mb-6 uppercase">${section}</h2>`;
+        const app = document.getElementById('app');
+        for (const [cat, items] of Object.entries(JLPT_Data)) {
+            app.innerHTML += `<h2 class="section-header">${cat}</h2>`;
             items.forEach(item => {
-                content.innerHTML += `
-                    <div class="materi-card p-6 mb-4 rounded-xl shadow-lg">
-                        <h3 class="font-bold text-white mb-3 text-lg">${item.jdl}</h3>
-                        <p class="jp-kanji">${item.jepang}</p>
-                        <p class="jp-kana">${item.baca}</p>
-                        <p class="meaning">${item.arti}</p>
+                app.innerHTML += `
+                    <div class="materi-card">
+                        <div style="font-weight:600; color:#cbd5e1; margin-bottom:8px;">${item.jdl}</div>
+                        <div class="jp-kanji">${item.jepang}</div>
+                        <div class="jp-kana">${item.baca}</div>
+                        <div class="meaning">${item.arti}</div>
+                        <div class="explanation"><b>Rumus:</b> ${item.pen}</div>
                     </div>
                 `;
             });

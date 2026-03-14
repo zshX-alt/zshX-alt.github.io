@@ -1,401 +1,54 @@
 <!DOCTYPE html>
-<html lang="id" class="dark">
+<html lang="id">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Nihongo Master: AI Sensei Edition</title>
+    <title>JLPT Learning Tree</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <script>
-        tailwind.config = {
-            darkMode: 'class',
-            theme: {
-                extend: {
-                    colors: {
-                        sakura: '#ffb7c5',
-                        japan: '#bc002d',
-                        gold: '#ffd700',
-                        ink: '#1e293b',
-                    }
-                }
-            }
-        }
-    </script>
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;800&family=Noto+Sans+JP:wght@400;700&display=swap');
-        body { font-family: 'Plus Jakarta Sans', 'Noto Sans JP', sans-serif; scroll-behavior: smooth; }
-        .section-card { @apply bg-white/5 backdrop-blur-md border border-white/10 rounded-3xl p-6 md:p-8 transition-all hover:border-sakura/30; }
-        .kanji-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(80px, 1fr)); gap: 1rem; }
-        .tab-btn { @apply px-6 py-3 rounded-full text-sm font-bold transition-all whitespace-nowrap; }
-        .tab-btn.active { @apply bg-sakura text-ink shadow-lg shadow-sakura/20; }
-        .tab-btn.inactive { @apply bg-white/5 text-slate-400 hover:bg-white/10; }
-        .particle-tag { @apply inline-block px-2 py-1 rounded bg-japan/20 text-sakura font-bold text-xs mr-2; }
-        
-        /* Loading animation */
-        .dots-container { display: flex; align-items: center; justify-content: center; gap: 4px; }
-        .dot { width: 8px; height: 8px; background-color: #ffb7c5; border-radius: 50%; animation: bounce 1.4s infinite ease-in-out both; }
-        .dot:nth-child(1) { animation-delay: -0.32s; }
-        .dot:nth-child(2) { animation-delay: -0.16s; }
-        @keyframes bounce { 0%, 80%, 100% { transform: scale(0); } 40% { transform: scale(1.0); } }
+        .materi-card { transition: all 0.2s; border-left: 5px solid #6366f1; }
+        .materi-card:hover { transform: translateX(5px); background-color: #f8fafc; }
     </style>
 </head>
-<body class="bg-[#0f1117] text-slate-300 min-h-screen pb-20">
+<body class="bg-gray-50 text-gray-900">
 
-    <!-- Hero Header -->
-    <header class="relative overflow-hidden pt-20 pb-16 px-6">
-        <div class="absolute top-0 right-0 -translate-y-1/2 translate-x-1/4 w-96 h-96 bg-sakura/10 rounded-full blur-[120px]"></div>
-        <div class="max-w-6xl mx-auto text-center relative z-10">
-            <div class="inline-flex items-center gap-2 bg-white/5 border border-white/10 px-4 py-2 rounded-full mb-6">
-                <span class="flex h-2 w-2 rounded-full bg-sakura animate-ping"></span>
-                <span class="text-xs font-black tracking-widest uppercase">Version 5.0 AI Powered</span>
-            </div>
-            <h1 class="text-5xl md:text-7xl font-extrabold text-white mb-6">Nihongo <span class="text-sakura">Sensei AI</span></h1>
-            <p class="text-lg text-slate-400 max-w-2xl mx-auto leading-relaxed">
-                Belajar Jepang jadi lebih pintar dengan bantuan Gemini AI. Tanya apa saja, bedah kalimat, dan latihan bicara langsung!
-            </p>
-        </div>
-    </header>
+    <div class="max-w-4xl mx-auto p-6 md:p-12">
+        <header class="mb-12 border-b-2 pb-6">
+            <h1 class="text-5xl font-black text-gray-800 tracking-tighter text-center">HOME</h1>
+            <p class="text-center text-gray-500 mt-2 italic font-medium">Kitab Suci Persiapan JLPT N5 & N4</p>
+        </header>
 
-    <!-- Navigation Tabs -->
-    <div class="sticky top-4 z-50 overflow-x-auto no-scrollbar max-w-full md:max-w-fit mx-auto mb-12 flex gap-2 p-2 bg-black/60 backdrop-blur-xl border border-white/5 rounded-full shadow-2xl">
-        <button onclick="showSection('ai-tools')" id="btn-ai-tools" class="tab-btn active">✨ AI Sensei</button>
-        <button onclick="showSection('gram-part')" id="btn-gram-part" class="tab-btn inactive">Grammar & Partikel</button>
-        <button onclick="showSection('conj-verb')" id="btn-conj-verb" class="tab-btn inactive">Verbs</button>
-        <button onclick="showSection('kanji-count')" id="btn-kanji-count" class="tab-btn inactive">Kanji & Counters</button>
-        <button onclick="showSection('keigo-conv')" id="btn-keigo-conv" class="tab-btn inactive">Keigo & Survival</button>
+        <div id="content" class="space-y-12"></div>
     </div>
 
-    <!-- Main Content -->
-    <main class="max-w-6xl mx-auto px-6">
-
-        <!-- SECTION: AI SENSEI (NEW ✨) -->
-        <section id="ai-tools" class="space-y-8 animate-in fade-in slide-in-from-bottom-4 duration-500">
-            <div class="grid md:grid-cols-2 gap-8">
-                <!-- AI Sentence Analyzer -->
-                <div class="section-card border-2 border-sakura/20">
-                    <h2 class="text-2xl font-bold text-white mb-4 flex items-center gap-2">✨ Bedah Kalimat AI</h2>
-                    <p class="text-sm text-slate-400 mb-6">Masukkan kalimat Jepang untuk dianalisis partikel, pola kalimat, dan artinya.</p>
-                    <textarea id="ai-input" placeholder="Contoh: 昨日は友達と映画を見に行きました。" 
-                        class="w-full h-32 bg-black/40 border border-white/10 rounded-2xl p-4 text-white focus:outline-none focus:border-sakura transition-all mb-4"></textarea>
-                    <button onclick="analyzeSentence()" class="w-full bg-sakura text-ink font-bold py-3 rounded-xl hover:scale-[1.02] transition-transform active:scale-95">
-                        Analisis Kalimat ✨
-                    </button>
-                    <div id="ai-result" class="hidden mt-6 p-4 bg-white/5 rounded-2xl border border-white/5 text-sm leading-relaxed max-h-60 overflow-y-auto">
-                        <!-- Result injected here -->
-                    </div>
-                </div>
-
-                <!-- AI Chat / Roleplay -->
-                <div class="section-card border-2 border-blue-500/20">
-                    <h2 class="text-2xl font-bold text-white mb-4 flex items-center gap-2">✨ Latihan Bicara AI</h2>
-                    <p class="text-sm text-slate-400 mb-6">Pilih skenario dan mulai ngobrol santai sama AI Sensei.</p>
-                    <div class="flex flex-wrap gap-2 mb-4">
-                        <button onclick="setScenario('Di Restoran')" class="text-xs px-3 py-1 bg-white/10 rounded-full hover:bg-white/20">Restoran</button>
-                        <button onclick="setScenario('Wawancara Kerja')" class="text-xs px-3 py-1 bg-white/10 rounded-full hover:bg-white/20">Wawancara</button>
-                        <button onclick="setScenario('Kenalan di Kampus')" class="text-xs px-3 py-1 bg-white/10 rounded-full hover:bg-white/20">Kampus</button>
-                    </div>
-                    <div id="chat-box" class="h-48 overflow-y-auto mb-4 space-y-3 bg-black/20 p-4 rounded-xl text-xs">
-                        <div class="text-blue-400"><strong>Sensei:</strong> Pilih skenario di atas dan kirim pesan pertama lo!</div>
-                    </div>
-                    <div class="flex gap-2">
-                        <input id="chat-input" type="text" placeholder="Ketik pesan..." 
-                            class="flex-1 bg-black/40 border border-white/10 rounded-xl px-4 py-2 text-white text-sm focus:outline-none focus:border-blue-500">
-                        <button onclick="chatWithAI()" class="bg-blue-600 p-2 rounded-xl hover:bg-blue-500 transition-all">
-                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
-                                <path d="M10.894 2.553a1 1 0 00-1.788 0l-7 14a1 1 0 001.169 1.409l5-1.429A1 1 0 009 15.571V11a1 1 0 112 0v4.571a1 1 0 00.725.962l5 1.428a1 1 0 001.17-1.408l-7-14z" />
-                            </svg>
-                        </button>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- SECTION: GRAMMAR & PARTIKEL -->
-        <section id="gram-part" class="hidden space-y-8">
-            <div class="grid md:grid-cols-2 gap-8">
-                <!-- Partikel Cheat Sheet -->
-                <div class="section-card">
-                    <h2 class="text-2xl font-bold text-white mb-6 flex items-center gap-2">🔗 Partikel Lengkap</h2>
-                    <div class="space-y-4">
-                        <div class="p-4 bg-white/5 rounded-xl border-l-4 border-sakura">
-                            <span class="particle-tag">WA / GA</span>
-                            <p class="text-sm mt-1 text-slate-300"><strong>WA:</strong> Fokus ke predikat. <strong>GA:</strong> Fokus ke pelaku (Informasi baru).</p>
-                        </div>
-                        <div class="p-4 bg-white/5 rounded-xl border-l-4 border-blue-400">
-                            <span class="particle-tag">NI / DE</span>
-                            <p class="text-sm mt-1 text-slate-300"><strong>NI:</strong> Waktu pas, tujuan gerak, tempat benda mati. <strong>DE:</strong> Tempat aktivitas, pakai alat.</p>
-                        </div>
-                        <div class="p-4 bg-white/5 rounded-xl border-l-4 border-green-400">
-                            <span class="particle-tag">MO / TO</span>
-                            <p class="text-sm mt-1 text-slate-300"><strong>MO:</strong> Juga. <strong>TO:</strong> Dan (lengkap), bersama siapa.</p>
-                        </div>
-                        <div class="p-4 bg-white/5 rounded-xl border-l-4 border-yellow-400">
-                            <span class="particle-tag">HE / WO</span>
-                            <p class="text-sm mt-1 text-slate-300"><strong>HE:</strong> Ke arah mana. <strong>WO (O):</strong> Nunjuk objek yang kena kerja.</p>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Pola Kalimat N4 Utama -->
-                <div class="section-card">
-                    <h2 class="text-2xl font-bold text-white mb-6">🏗️ Pola Kalimat N4 Wajib</h2>
-                    <ul class="space-y-3 text-sm">
-                        <li class="flex justify-between border-b border-white/5 pb-2">
-                            <span>~Nagara (Sambil)</span><span class="text-sakura">V-Masu + nagara</span>
-                        </li>
-                        <li class="flex justify-between border-b border-white/5 pb-2">
-                            <span>~Yasui / Nikui (Mudah/Sulit)</span><span class="text-sakura">V-Masu + yasui/nikui</span>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-        </section>
-
-        <!-- SECTION: KONJUGASI & VERBS -->
-        <section id="conj-verb" class="hidden space-y-8">
-            <div class="section-card">
-                <h2 class="text-2xl font-bold text-white mb-6">🌀 Tabel Konjugasi Maut</h2>
-                <div class="overflow-x-auto">
-                    <table class="w-full text-sm text-left border-collapse">
-                        <thead class="bg-white/5">
-                            <tr>
-                                <th class="p-4 border border-white/10">Bentuk</th>
-                                <th class="p-4 border border-white/10">Grup 1 (U)</th>
-                                <th class="p-4 border border-white/10">Grup 2 (Ru)</th>
-                                <th class="p-4 border border-white/10 text-sakura">Irreguler</th>
-                            </tr>
-                        </thead>
-                        <tbody id="verb-table-body">
-                            <!-- Table content remains as before -->
-                        </tbody>
-                    </table>
-                </div>
-            </div>
-        </section>
-
-        <!-- Other sections like Kanji & Keigo kept hidden same as before -->
-        <section id="kanji-count" class="hidden space-y-8">
-             <div class="section-card text-center py-20">
-                <p>Fitur Kanji & Counters tetap aktif. Klik tab lain untuk melihat upgrade AI ✨.</p>
-             </div>
-        </section>
-        
-        <section id="keigo-conv" class="hidden space-y-8">
-             <div class="section-card text-center py-20">
-                <p>Fitur Keigo tetap aktif. Hubungkan dengan AI Roleplay untuk latihan Keigo ✨.</p>
-             </div>
-        </section>
-
-    </main>
-
-    <!-- Modal for TTS -->
-    <div id="tts-modal" class="fixed inset-0 bg-black/80 hidden z-[100] flex items-center justify-center p-6">
-        <div class="bg-ink p-8 rounded-3xl max-w-sm w-full border border-white/10 text-center">
-            <h3 class="text-xl font-bold mb-4 text-sakura">Audio Sensei ✨</h3>
-            <p id="tts-status" class="text-sm mb-6 text-slate-400">Menyiapkan suara...</p>
-            <button onclick="document.getElementById('tts-modal').classList.add('hidden')" class="w-full bg-white/10 py-3 rounded-xl hover:bg-white/20 transition">Tutup</button>
-        </div>
-    </div>
-
-    <!-- Footer Stats -->
-    <footer class="fixed bottom-0 left-0 right-0 p-4 bg-black/90 backdrop-blur-xl border-t border-white/5 text-center">
-        <div class="flex justify-center gap-8 text-[10px] font-black uppercase tracking-widest text-slate-500">
-            <span>Powered by Gemini 2.5 ✨</span>
-            <span class="text-sakura">Final AI Edition</span>
-        </div>
-    </footer>
-
+    <script src="data.js"></script>
     <script>
-        const apiKey = ""; // Provided at runtime
-        const appId = typeof __app_id !== 'undefined' ? __app_id : 'nihongo-sensei-final';
+        const contentDiv = document.getElementById('content');
         
-        let currentScenario = "Percakapan Santai";
+        for (const [section, items] of Object.entries(JLPT_Data)) {
+            let sectionHtml = `
+                <section>
+                    <h2 class="text-3xl font-extrabold text-indigo-600 mb-6 flex items-center">
+                        <span class="bg-indigo-600 text-white px-3 py-1 rounded-lg mr-3 text-sm italic">Folder</span>
+                        ${section}
+                    </h2>
+                    <div class="grid gap-4">
+            `;
 
-        function showSection(sectionId) {
-            const sections = ['ai-tools', 'gram-part', 'conj-verb', 'kanji-count', 'keigo-conv'];
-            sections.forEach(id => {
-                const el = document.getElementById(id);
-                if(el) el.classList.add('hidden');
-                const btn = document.getElementById('btn-' + id);
-                if(btn) {
-                    btn.classList.remove('active');
-                    btn.classList.add('inactive');
-                }
-            });
-            
-            const activeSec = document.getElementById(sectionId);
-            activeSec.classList.remove('hidden');
-            activeSec.classList.add('animate-in', 'fade-in', 'slide-in-from-bottom-2');
-            
-            document.getElementById('btn-' + sectionId).classList.add('active');
-            document.getElementById('btn-' + sectionId).classList.remove('inactive');
-        }
-
-        async function callGemini(prompt, systemInstruction = "") {
-            const url = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash-preview-09-2025:generateContent?key=${apiKey}`;
-            
-            const payload = {
-                contents: [{ parts: [{ text: prompt }] }],
-                systemInstruction: { parts: [{ text: systemInstruction }] }
-            };
-
-            let delay = 1000;
-            for (let i = 0; i < 5; i++) {
-                try {
-                    const response = await fetch(url, {
-                        method: 'POST',
-                        headers: { 'Content-Type': 'application/json' },
-                        body: JSON.stringify(payload)
-                    });
-                    if (!response.ok) throw new Error('API Error');
-                    const data = await response.json();
-                    return data.candidates?.[0]?.content?.parts?.[0]?.text;
-                } catch (e) {
-                    if (i === 4) throw e;
-                    await new Promise(r => setTimeout(r, delay));
-                    delay *= 2;
-                }
-            }
-        }
-
-        async function analyzeSentence() {
-            const input = document.getElementById('ai-input').value;
-            const resultBox = document.getElementById('ai-result');
-            if (!input.trim()) return;
-
-            resultBox.classList.remove('hidden');
-            resultBox.innerHTML = '<div class="dots-container"><div class="dot"></div><div class="dot"></div><div class="dot"></div></div>';
-
-            const system = "Anda adalah Sensei Bahasa Jepang yang ahli. Analisis kalimat yang diberikan oleh pengguna. Berikan: 1. Romaji, 2. Terjemahan Indonesia, 3. Bedah Partikel (jelaskan fungsi tiap partikel), 4. Pola tata bahasa yang digunakan (N5-N1). Gunakan format yang rapi dengan bullet points.";
-            
-            try {
-                const response = await callGemini(input, system);
-                // Convert markdown-ish response to simple HTML
-                const formatted = response.replace(/\n/g, '<br>').replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>');
-                resultBox.innerHTML = `
-                    <div class="flex justify-between items-start mb-4">
-                        <div class="text-white">${formatted}</div>
-                        <button onclick="speakText('${input.replace(/'/g, "\\'")}')" class="bg-sakura/20 p-2 rounded-lg hover:bg-sakura/40 transition">
-                            🔊
-                        </button>
+            items.forEach(item => {
+                sectionHtml += `
+                    <div class="materi-card bg-white p-6 rounded-xl shadow-sm">
+                        <h3 class="text-xl font-bold text-gray-800 mb-2">${item.jdl}</h3>
+                        <div class="text-gray-600 leading-relaxed text-base">
+                            ${item.pen}
+                        </div>
                     </div>
                 `;
-            } catch (err) {
-                resultBox.innerHTML = '<span class="text-red-400">Sensei sedang istirahat. Coba lagi nanti, Bro!</span>';
-            }
+            });
+
+            sectionHtml += `</div></section>`;
+            contentDiv.innerHTML += sectionHtml;
         }
-
-        function setScenario(s) {
-            currentScenario = s;
-            const chatBox = document.getElementById('chat-box');
-            chatBox.innerHTML += `<div class="text-yellow-400"><strong>Skenario diubah ke:</strong> ${s}. Ayo sapa Sensei!</div>`;
-        }
-
-        async function chatWithAI() {
-            const input = document.getElementById('chat-input');
-            const chatBox = document.getElementById('chat-box');
-            const msg = input.value.trim();
-            if (!msg) return;
-
-            chatBox.innerHTML += `<div class="text-right text-slate-100"><strong>Lo:</strong> ${msg}</div>`;
-            input.value = "";
-            chatBox.scrollTop = chatBox.scrollHeight;
-
-            const system = `Anda adalah orang Jepang asli yang sedang berbicara dengan pelajar bahasa Jepang dalam skenario: ${currentScenario}. Balaslah dalam bahasa Jepang (sertakan furigana/romaji jika sulit) dan sertakan terjemahan singkat di bawahnya. Jadilah ramah dan koreksi sedikit jika tata bahasanya salah.`;
-            
-            try {
-                const response = await callGemini(msg, system);
-                const formatted = response.replace(/\n/g, '<br>');
-                chatBox.innerHTML += `<div class="text-blue-300"><strong>Sensei:</strong> ${formatted}</div>`;
-                chatBox.scrollTop = chatBox.scrollHeight;
-            } catch (err) {
-                chatBox.innerHTML += `<div class="text-red-400">Sensei: Maaf, koneksi terputus!</div>`;
-            }
-        }
-
-        // --- TTS Implementation ---
-        async function speakText(text) {
-            const status = document.getElementById('tts-status');
-            document.getElementById('tts-modal').classList.remove('hidden');
-            status.innerText = "Menerjemahkan teks ke suara...";
-
-            const url = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash-preview-tts:generateContent?key=${apiKey}`;
-            const payload = {
-                contents: [{ parts: [{ text: `Say in Japanese: ${text}` }] }],
-                generationConfig: {
-                    responseModalities: ["AUDIO"],
-                    speechConfig: { voiceConfig: { prebuiltVoiceConfig: { voiceName: "Aoede" } } }
-                }
-            };
-
-            try {
-                const response = await fetch(url, {
-                    method: 'POST',
-                    headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify(payload)
-                });
-                const data = await response.json();
-                const base64Audio = data.candidates?.[0]?.content?.parts?.[0]?.inlineData?.data;
-                
-                if (base64Audio) {
-                    playPCM(base64Audio);
-                    status.innerText = "Sedang berbicara...";
-                    setTimeout(() => document.getElementById('tts-modal').classList.add('hidden'), 3000);
-                }
-            } catch (err) {
-                status.innerText = "Gagal memutar audio.";
-            }
-        }
-
-        function playPCM(base64Data) {
-            const binaryString = atob(base64Data);
-            const len = binaryString.length;
-            const bytes = new Uint8Array(len);
-            for (let i = 0; i < len; i++) bytes[i] = binaryString.charCodeAt(i);
-            
-            // Simple PCM to WAV conversion for 24kHz (default Gemini TTS rate)
-            const wavHeader = createWavHeader(len, 24000);
-            const blob = new Blob([wavHeader, bytes], { type: 'audio/wav' });
-            const audio = new Audio(URL.createObjectURL(blob));
-            audio.play();
-        }
-
-        function createWavHeader(dataLength, sampleRate) {
-            const header = new ArrayBuffer(44);
-            const view = new DataView(header);
-            const writeString = (offset, string) => {
-                for (let i = 0; i < string.length; i++) view.setUint8(offset + i, string.charCodeAt(i));
-            };
-            writeString(0, 'RIFF');
-            view.setUint32(4, 36 + dataLength, true);
-            writeString(8, 'WAVE');
-            writeString(12, 'fmt ');
-            view.setUint32(16, 16, true);
-            view.setUint16(20, 1, true);
-            view.setUint16(22, 1, true); // Mono
-            view.setUint32(24, sampleRate, true);
-            view.setUint32(28, sampleRate * 2, true);
-            view.setUint16(32, 2, true);
-            view.setUint16(34, 16, true);
-            writeString(36, 'data');
-            view.setUint32(40, dataLength, true);
-            return header;
-        }
-        
-        // Initial verb table data (placeholder for consistency)
-        document.getElementById('verb-table-body').innerHTML = `
-            <tr>
-                <td class="p-4 border border-white/10 font-bold">Kamus</td>
-                <td class="p-4 border border-white/10 italic">Kaku (Menulis)</td>
-                <td class="p-4 border border-white/10 italic">Taberu (Makan)</td>
-                <td class="p-4 border border-white/10">Suru / Kuru</td>
-            </tr>
-            <tr>
-                <td class="p-4 border border-white/10 font-bold text-sakura">Te (Permintaan)</td>
-                <td class="p-4 border border-white/10">Kaite</td>
-                <td class="p-4 border border-white/10">Tabete</td>
-                <td class="p-4 border border-white/10">Shite / Kite</td>
-            </tr>
-        `;
     </script>
 </body>
 </html>

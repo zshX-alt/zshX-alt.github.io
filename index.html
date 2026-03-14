@@ -2,31 +2,138 @@
 <html lang="id">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Nihongo Pro - 50 Bab</title>
-    <link rel="stylesheet" href="style.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Nihongo Pro - Daftar Bab</title>
+    <style>
+        /* --- CSS INTERNAL --- */
+        :root {
+            --bg: #0f0f0f;
+            --card-bg: #1a1a1a;
+            --text-main: #ffffff;
+            --text-gray: #b0b0b0;
+            --text-dim: #555555;
+            --accent: #b0b0b0;
+        }
+
+        body {
+            background-color: var(--bg);
+            color: var(--text-main);
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        header {
+            text-align: center;
+            margin-bottom: 40px;
+            margin-top: 20px;
+        }
+
+        header h1 {
+            font-size: 2.2rem;
+            color: var(--text-gray);
+            margin: 0;
+            letter-spacing: -1.5px;
+            font-weight: 800;
+        }
+
+        header p {
+            color: var(--text-dim);
+            font-size: 0.95rem;
+            margin-top: 8px;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+        }
+
+        /* Container Grid untuk 50 Bab */
+        #bab-list {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr); /* 4 kolom di layar HP */
+            gap: 12px;
+            width: 100%;
+            max-width: 500px; /* Batasan lebar di PC */
+            padding-bottom: 50px;
+        }
+
+        /* Gaya Card per Bab */
+        .bab-card {
+            background: var(--card-bg);
+            border: 1px solid #252525;
+            border-radius: 12px;
+            padding: 18px 5px;
+            text-align: center;
+            text-decoration: none;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+            -webkit-tap-highlight-color: transparent; /* Hapus shadow biru di Android Chrome */
+        }
+
+        /* Efek saat ditekan/hover */
+        .bab-card:active {
+            transform: scale(0.92);
+            background: #222;
+            border-color: var(--accent);
+        }
+
+        .bab-card .number {
+            font-size: 1.5rem;
+            font-weight: 800;
+            color: var(--text-gray);
+        }
+
+        .bab-card .label {
+            font-size: 0.65rem;
+            color: var(--text-dim);
+            text-transform: uppercase;
+            margin-top: 4px;
+            font-weight: 600;
+        }
+
+        /* Responsive untuk layar lebih lebar (Tablet/PC) */
+        @media (min-width: 600px) {
+            #bab-list {
+                grid-template-columns: repeat(5, 1fr); /* 5 kolom di layar besar */
+                gap: 20px;
+            }
+            header h1 { font-size: 2.8rem; }
+        }
+    </style>
 </head>
 <body>
-    <div id="app-container">
-        <header>
-            <h1>Nihongo Pro</h1>
-            <p class="subtitle">Minna no Nihongo (Bab 1 - 50)</p>
-        </header>
-        <div class="chapter-grid" id="menu"></div>
-    </div>
+
+    <header>
+        <h1>Nihongo Pro</h1>
+        <p>Minna no Nihongo (1 - 50)</p>
+    </header>
+
+    <div id="bab-list"></div>
 
     <script>
-        const menu = document.getElementById('menu');
-        for (let i = 1; i <= 50; i++) {
-            const a = document.createElement('a');
-            a.href = `template.html?bab=${i}`;
-            a.className = 'chapter-card';
-            a.innerHTML = `
-                <div style="color:var(--accent); font-size:1.6rem; font-weight:900;">${i}</div>
-                <div style="font-size:0.75rem; color:var(--text-dim); text-transform:uppercase;">第${i}課</div>
-            `;
-            menu.appendChild(a);
-        }
+        /* --- JAVASCRIPT OTOMATIS GENERATE 50 BAB --- */
+        document.addEventListener('DOMContentLoaded', () => {
+            const container = document.getElementById('bab-list');
+            
+            // Generate bab 1 sampai 50
+            for (let i = 1; i <= 50; i++) {
+                const card = document.createElement('a');
+                // Link ke template.html dengan parameter ID bab
+                card.href = `template.html?bab=${i}`;
+                card.className = 'bab-card';
+                
+                card.innerHTML = `
+                    <span class="number">${i}</span>
+                    <span class="label">第${i}課</span>
+                `;
+                
+                container.appendChild(card);
+            }
+        });
     </script>
+
 </body>
 </html>

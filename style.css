@@ -1,34 +1,32 @@
-/* Update di file CSS template lo */
-
-/* 1. Kasih jarak antar huruf di teks Jepang biar nggak rapet banget */
-.example-box p:first-child {
-    letter-spacing: 0.05rem;
-    color: #ffffff;
-    filter: drop-shadow(0 0 1px rgba(255,255,255,0.1)); /* Glow tipis banget */
-}
-
-/* 2. Bikin Romaji-nya lebih 'lowkey' tapi elegan */
-.example-box p:nth-child(2) {
-    color: #777777 !important; /* Abu-abu lebih kalem dari sebelumnya */
-    font-size: 0.85rem;
-    letter-spacing: 0.5px;
-    margin: 10px 0 !important;
-}
-
-/* 3. Bikin Card-nya punya border halus banget */
+/* Card dibuat lebih minimalis */
 .card {
-    background: #161616;
-    border: 1px solid #222; /* Border gelap biar ada dimensi */
-    box-shadow: 0 4px 20px rgba(0,0,0,0.3);
-    padding: 20px;
-    margin-bottom: 20px;
-    border-radius: 12px;
+    background: #1a1a1a;
+    border-radius: 16px;
+    padding: 24px;
+    margin-bottom: 24px;
+    border: 1px solid #222;
 }
 
-/* 4. Link Kembali dibuat lebih redup biar nggak ganggu judul */
-.back-link {
-    font-size: 0.8rem;
-    color: #555 !important;
-    text-transform: uppercase;
-    letter-spacing: 2px;
+/* Judul Pola: Abu-abu Terang */
+.pola-title {
+    color: #e0e0e0;
+    font-size: 1.1rem;
+    font-weight: 700;
+    margin-bottom: 12px;
+}
+
+/* Penjelasan: Abu-abu Kalem (Jangan terlalu gelap!) */
+.penjelasan-text {
+    color: #a0a0a0; /* Ini kuncinya biar gak tenggelam */
+    font-size: 0.9rem;
+    line-height: 1.6;
+    margin-bottom: 20px;
+}
+
+/* Kotak Contoh: Hitam Pekat */
+.example-box {
+    background: #000000;
+    padding: 20px;
+    border-radius: 12px;
+    border-left: 3px solid #444; /* Garis aksen minimalis */
 }

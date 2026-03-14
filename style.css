@@ -1,42 +1,80 @@
-:root {
-    --bg: #0f0f0f;
-    --card-bg: #1a1a1a;
-    --text: #ffffff;
-    --text-dim: #888888;
-    --accent: #b0b0b0; /* Abu-abu muda pengganti biru */
-    --accent-dark: #444444; /* Abu-abu tua */
+/* Reset & Base */
+body {
+    background-color: #0f0f0f;
+    color: #ffffff;
+    font-family: 'Inter', -apple-system, sans-serif;
+    margin: 0;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
-/* Tombol Kembali */
-.back-link, a {
-    color: var(--accent) !important;
-    text-decoration: none;
-    font-weight: bold;
-}
-
-/* Judul Pola Kalimat */
-h3 {
-    color: var(--accent) !important;
-}
-
-/* Tombol Bab Selanjutnya (Ganti Biru ke Abu-abu) */
-#next {
-    background-color: var(--accent) !important; /* Sekarang jadi abu-abu */
-    color: #121212 !important; /* Teks tombol jadi gelap biar kontras */
-    border: none;
-    padding: 15px;
-    border-radius: 12px;
-    font-weight: bold;
-    cursor: pointer;
-    width: 100%;
-    display: block;
+header {
     text-align: center;
+    margin-bottom: 40px;
+    margin-top: 20px;
 }
 
-/* Kotak Contoh Kalimat */
-.example-box {
-    background: #000000 !important; /* Hitam pekat biar elegan */
-    border-left: 3px solid var(--accent) !important;
-    padding: 15px;
-    border-radius: 8px;
+header h1 {
+    font-size: 2rem;
+    color: #b0b0b0; /* Abu-abu aksen */
+    margin: 0;
+    letter-spacing: -1px;
+}
+
+header p {
+    color: #666;
+    font-size: 0.9rem;
+    margin-top: 5px;
+}
+
+/* Container Grid */
+#bab-list {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr); /* 4 kolom di HP */
+    gap: 12px;
+    width: 100%;
+    max-width: 500px; /* Biar nggak terlalu lebar di PC */
+}
+
+/* Gaya Kotak Bab */
+.bab-card {
+    background: #1a1a1a;
+    border: 1px solid #333;
+    border-radius: 12px;
+    padding: 15px 5px;
+    text-align: center;
+    text-decoration: none;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    transition: all 0.2s ease;
+}
+
+.bab-card:active {
+    transform: scale(0.95);
+    background: #252525;
+    border-color: #b0b0b0;
+}
+
+.bab-card .number {
+    font-size: 1.4rem;
+    font-weight: 800;
+    color: #b0b0b0;
+}
+
+.bab-card .label {
+    font-size: 0.6rem;
+    color: #555;
+    text-transform: uppercase;
+    margin-top: 2px;
+}
+
+/* Responsive buat PC */
+@media (min-width: 600px) {
+    #bab-list {
+        grid-template-columns: repeat(5, 1fr);
+        gap: 20px;
+    }
 }

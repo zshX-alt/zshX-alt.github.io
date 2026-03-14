@@ -1,4 +1,13 @@
 const JLPT_Data = {
+    "0. CHEAT SHEET (TABEL KONJUGASI)": [
+        { 
+            jdl: "Jurus Konjugasi Utama", 
+            jepang: "書く (Kaku) & 食べる (Taberu)", 
+            baca: "Tabel Konjugasi Dasar", 
+            arti: "Cheat Sheet Perubahan Kata Kerja", 
+            pen: "Kamus: Kaku / Taberu | Masu: Kakimasu / Tabemasu | Te: Kaite / Tabete | Ta: Kaita / Tabeta | Potensial: Kakeru / Taberareru" 
+        }
+    ],
     "1. N5 - FOUNDATION (DASAR)": [
         { jdl: "Struktur Kalimat & Partikel Dasar", jepang: "私は日本語を勉強します。", baca: "Watashi wa nihongo o benkyou shimasu.", arti: "Saya belajar bahasa Jepang.", pen: "Pola S-O-P + Partikel (Wa, Ga, O, Ni, De, E, To)." },
         { jdl: "Kata Sifat (I & Na)", jepang: "おいしいラーメン。", baca: "Oishii ramen.", arti: "Ramen enak.", pen: "Perubahan bentuk (Negatif/Lampau) dan penggunaan 'Na' pada Na-Adj." },
@@ -20,7 +29,7 @@ const JLPT_Data = {
         { jdl: "Bentuk Kausatif (Menyuruh)", jepang: "練習させます。", baca: "Renshuu sasemasu.", arti: "Menyuruh latihan.", pen: "Memberi izin atau menyuruh orang lain." }
     ],
     "3. N4 - COMPLEX EXPRESSIONS": [
-        { jdl: "Memberi & Menerima", jepang: "花をもらいました。", baca: "Hana o moraimashita.", arti: "Menerima bunga.", pen: "Ageru (Kasih), Kureru (Dikasih), Morau (Terima)." },
+        { jdl: "Memberi & Menerima", jepang: "花をもらいました。", baca: "Hana o moraimashita.", arti: "Terima bunga.", pen: "Ageru (Kasih), Kureru (Dikasih), Morau (Terima)." },
         { jdl: "Pasif (Passive)", jepang: "褒められました。", baca: "Homeraremashita.", arti: "Dipuji.", pen: "Subjek menderita aksi (terkena dampak)." },
         { jdl: "Pasif-Kausatif", jepang: "待たされました。", baca: "Matasaremashita.", arti: "Dipaksa menunggu.", pen: "Aksi terpaksa dilakukan karena disuruh." },
         { jdl: "Tujuan & Alasan", jepang: "健康のために走る。", baca: "Kenkou no tame ni hashiru.", arti: "Lari demi kesehatan.", pen: "Tame ni (Tujuan/demi), Node/Kara (Alasan objektif/subjektif)." },

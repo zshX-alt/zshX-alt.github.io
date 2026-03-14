@@ -1,14 +1,98 @@
-* { box-sizing: border-box; margin: 0; padding: 0; }
-body { background-color: #050505; color: #e2e8f0; font-family: 'Inter', sans-serif; padding: 16px; }
-h1 { text-align: center; color: #6366f1; margin: 20px 0; font-size: 1.5rem; }
-.section-header { color: #818cf8; font-size: 1.1rem; margin: 30px 0 10px; padding-left: 8px; border-left: 4px solid #6366f1; }
-.materi-card { background: rgba(30, 41, 59, 0.5); backdrop-filter: blur(10px); padding: 18px; border-radius: 16px; margin-bottom: 12px; border: 1px solid rgba(255,255,255,0.05); }
-.jp-kanji { font-size: 1.25rem; font-weight: bold; color: #fff; margin-bottom: 2px; }
-.jp-kana { color: #818cf8; font-size: 0.85rem; }
-.meaning { font-style: italic; color: #94a3b8; font-size: 0.9rem; margin: 8px 0; }
-.explanation { background: rgba(0,0,0,0.2); padding: 10px; border-radius: 8px; font-size: 0.85rem; color: #cbd5e1; }
-.table-container { overflow-x: auto; margin: 20px 0; }
-table { width: 100%; border-collapse: collapse; background: #1e293b; border-radius: 12px; overflow: hidden; }
-th, td { padding: 12px; text-align: left; border-bottom: 1px solid #334155; font-size: 0.85rem; }
-th { background: #312e81; color: #a5b4fc; }
-td { color: #f8fafc; }
+:root {
+    --bg: #0b0e14;
+    --card: #151921;
+    --accent: #00d4ff; /* Cyan Electric */
+    --text: #e0e6ed;
+    --text-dim: #94a3b8;
+    --border: #2d333b;
+}
+
+* {
+    box-sizing: border-box;
+    -webkit-tap-highlight-color: transparent;
+}
+
+body {
+    background-color: var(--bg);
+    color: var(--text);
+    font-family: 'Inter', -apple-system, sans-serif;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+}
+
+#app-container {
+    width: 100%;
+    max-width: 500px; /* Lebar HP ideal */
+    min-height: 100vh;
+    padding: 20px;
+}
+
+header {
+    margin-bottom: 30px;
+    padding-top: 20px;
+}
+
+h1 {
+    font-size: 2rem;
+    font-weight: 800;
+    background: linear-gradient(90deg, #fff, var(--accent));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    margin: 0;
+}
+
+.subtitle {
+    color: var(--text-dim);
+    font-size: 0.9rem;
+}
+
+/* Grid Tombol Bab */
+.chapter-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr); /* 2 Kolom di mobile */
+    gap: 12px;
+}
+
+.chapter-card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    padding: 20px;
+    border-radius: 16px;
+    text-decoration: none;
+    color: var(--text);
+    transition: all 0.3s ease;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    overflow: hidden;
+}
+
+.chapter-card:active {
+    transform: scale(0.95);
+    border-color: var(--accent);
+}
+
+.chapter-number {
+    font-size: 1.5rem;
+    font-weight: 900;
+    color: var(--accent);
+    margin-bottom: 4px;
+}
+
+.chapter-label {
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: var(--text-dim);
+}
+
+/* Furigana Styling */
+ruby rt {
+    color: var(--accent);
+    font-size: 0.65em;
+    font-weight: 500;
+}

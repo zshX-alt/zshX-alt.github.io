@@ -1,33 +1,21 @@
 <!DOCTYPE html>
-<html>
+<html lang="id">
 <head>
-<meta charset="UTF-8">
-<title>AI Sensei Japanese School</title>
-<link rel="stylesheet" href="style.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>N4 Mastery</title>
+    <link rel="stylesheet" href="style.css">
 </head>
-
 <body>
-
-<header>
-<h1>AI Sensei Japanese Academy</h1>
-</header>
-
-<nav>
-<button onclick="home()">Home</button>
-<button onclick="openCourse()">Course</button>
-<button onclick="openSensei()">Sensei</button>
-<button onclick="startExam()">Exam</button>
-<button onclick="startStory()">Story</button>
-</nav>
-
-<div id="app"></div>
-
-<script src="main.js"></script>
-<script src="engine/courseEngine.js"></script>
-<script src="engine/aiTutor.js"></script>
-<script src="engine/examEngine.js"></script>
-<script src="engine/adaptiveEngine.js"></script>
-<script src="engine/storyEngine.js"></script>
-
+    <div class="container">
+        <header>
+            <h1>N4 Study Guide</h1>
+            <input type="text" id="searchBar" placeholder="Cari materi...">
+        </header>
+        
+        <main id="materiContainer">
+            </main>
+    </div>
+    <script src="script.js"></script>
 </body>
 </html>

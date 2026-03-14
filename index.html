@@ -3,43 +3,32 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Master JLPT Hub</title>
+    <title>Nihongo Master - 50 Bab</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <h1>Master JLPT Hub</h1>
+    <div id="app-container">
+        <header>
+            <h1>Nihongo Pro</h1>
+            <p class="subtitle">Mastering Minna no Nihongo (50 Bab)</p>
+        </header>
 
-    <div class="table-container">
-        <table>
-            <thead><tr><th>Bentuk</th><th>Kaku (G1)</th><th>Taberu (G2)</th></tr></thead>
-            <tbody>
-                <tr><td>Kamus</td><td>Kaku</td><td>Taberu</td></tr>
-                <tr><td>Masu</td><td>Kakimasu</td><td>Tabemasu</td></tr>
-                <tr><td>Te-Form</td><td>Kaite</td><td>Tabete</td></tr>
-                <tr><td>Ta-Form</td><td>Kaita</td><td>Tabeta</td></tr>
-                <tr><td>Potensial</td><td>Kakeru</td><td>Taberareru</td></tr>
-            </tbody>
-        </table>
+        <div class="chapter-grid" id="menu-container">
+            </div>
     </div>
 
-    <div id="app"></div>
-
-    <script src="data.js"></script>
     <script>
-        const app = document.getElementById('app');
-        for (const [cat, items] of Object.entries(JLPT_Data)) {
-            app.innerHTML += `<h2 class="section-header">${cat}</h2>`;
-            items.forEach(item => {
-                app.innerHTML += `
-                    <div class="materi-card">
-                        <div style="font-weight:600; color:#cbd5e1; margin-bottom:8px;">${item.jdl}</div>
-                        <div class="jp-kanji">${item.jepang}</div>
-                        <div class="jp-kana">${item.baca}</div>
-                        <div class="meaning">${item.arti}</div>
-                        <div class="explanation"><b>Rumus:</b> ${item.pen}</div>
-                    </div>
-                `;
-            });
+        const container = document.getElementById('menu-container');
+        // Loop buat bikin 50 tombol otomatis
+        for (let i = 1; i <= 50; i++) {
+            const card = document.createElement('a');
+            card.href = `template.html?bab=${i}`;
+            card.className = 'chapter-card';
+            card.innerHTML = `
+                <span class="chapter-number">${i}</span>
+                <span class="chapter-label">第${i}課</span>
+            `;
+            container.appendChild(card);
         }
     </script>
 </body>

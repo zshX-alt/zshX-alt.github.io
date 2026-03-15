@@ -1,58 +1,39 @@
 const bab2 = {
-    title: "第２課 (Bab 2)",
-    description: "Belajar nunjuk benda (Ini/Itu) dan nanya barang punya siapa. Biar lo nggak ketuker mana dompet lo mana dompet orang!",
+    title: "第２課 (Bab 2) - Benda di Sekitar Kita",
+    description: "Belajar nunjuk benda pakai Kore, Sore, Are, dan nanya ini punya siapa.",
     bunpou: [
         {
-            pola: "1. これ / それ / あれ (Kore / Sore / Are)",
-            penjelasan: "Ini kata ganti benda. 'Kore' (ini) deket lo, 'Sore' (itu) deket temen ngobrol, 'Are' (itu jauh) jauh dari lo berdua. Inget, kata-kata ini berdiri sendiri, jangan ditempelin kata benda langsung.",
-            jp: "これ は <ruby>辞書<rt>じしょ</rt></ruby> です。",
-            ro: "Kore wa jisho desu.",
-            id: "Ini adalah kamus."
+            pola: "1. Kore/Sore/Are (Ini/Itu)",
+            jp: "これ は <ruby>本<rt>ほん</rt></ruby> です。",
+            ro: "Kore wa hon desu.",
+            id: "Ini adalah buku."
         },
         {
-            pola: "2. この / その / あの + [Kata Benda]",
-            penjelasan: "Sama-sama 'Ini/Itu', tapi WAJIB ditempelin kata benda. Ibaratnya, kata-kata ini tuh 'perlu temen'. Gak bisa cuma bilang 'Kono desu', harus 'Kono hon desu' (Buku ini).",
-            jp: "この <ruby>傘<rt>かさ</rt></ruby> は 私 の です。",
-            ro: "Kono kasa wa watashi no desu.",
-            id: "Payung ini adalah milik saya."
+            pola: "2. Kono/Sono/Ano [Benda]",
+            jp: "この <ruby>本<rt>ほん</rt></ruby> は 私のです。",
+            ro: "Kono hon wa watashi no desu.",
+            id: "Buku ini adalah milik saya."
         },
         {
-            pola: "3. そうです / そうじゃありません",
-            penjelasan: "Jurus singkat buat ngejawab pertanyaan 'Iya/Bukan'. Daripada ngulang kalimat panjang lebar, cukup pake ini. Praktis dan efisien!",
+            pola: "3. Sou desu / Sou ja arimasen",
             jp: "はい、そうです。",
             ro: "Hai, sou desu.",
-            id: "Iya, benar begitu (sesuai yang dikatakan)."
+            id: "Ya, benar."
         },
         {
-            pola: "4. [Kalimat 1] か、[Kalimat 2] か",
-            penjelasan: "Pola buat ngasih pilihan. Di Jepang gak ada kata 'atau' buat kalimat tanya, lo cuma perlu dijejerin aja pake dua partikel 'Ka'.",
-            jp: "これ は 「９」 ですか、「７」 ですか。",
-            ro: "Kore wa 'kyuu' desu ka, 'nana' desu ka.",
-            id: "Ini angka 9 atau angka 7?"
-        },
-        {
-            pola: "5. [Benda 1] の [Benda 2] (No)",
-            penjelasan: "Di Bab 2, partikel 'No' punya fungsi baru yaitu ngejelasin isi atau topik benda itu. Misal: Majalah (tentang) Mobil.",
-            jp: "これ は <ruby>自動車<rt>じどうしゃ</rt></ruby> の <ruby>雑誌<rt>ざっし</rt></ruby> です。",
-            ro: "Kore wa jidousha no zasshi desu.",
-            id: "Ini adalah majalah (tentang) mobil."
-        },
-        {
-            pola: "6. ～の です (Kepemilikan Singkat)",
-            penjelasan: "Kalau bendanya udah jelas lagi dipegang atau dilihat, lo nggak perlu sebutin bendanya lagi. Cukup pake 'No desu' buat bilang 'Punya...'.",
-            jp: "その <ruby>鞄<rt>かばん</rt></ruby> は <ruby>誰<rt>だれ</rt></ruby> の ですか。",
-            ro: "Sono kaban wa dare no desu ka.",
-            id: "Tas itu milik siapa?"
-        },
-        {
-            pola: "7. そうですか (Ooh Begitu...)",
-            penjelasan: "Ini respon paling penting kalau dapet info baru. Inget Bos, nadanya harus turun (datar), jangan naik. Kalau naik nanti malah jadi nanya balik.",
-            jp: "あ、そうですか。",
-            ro: "A, sou desu ka.",
-            id: "Ooh, begitu ya (saya paham)."
+            pola: "4. A wa B desu ka, C desu ka",
+            jp: "これ は 本 ですか、<ruby>雑誌<rt>ざっし</rt></ruby> ですか。",
+            ro: "Kore wa hon desu ka, zasshi desu ka.",
+            id: "Apakah ini buku atau majalah?"
         }
     ],
-    tips: "Hati-hati ketuker antara 'Kore' dan 'Kono'. Rumus gampangnya: 'Kore' itu Jomblo (berdiri sendiri), 'Kono' itu Bucin (harus ada pasangannya alias Kata Benda). Terus kalau dapet hadiah, orang Jepang biasanya bilang 'Chotto kimochi desu' (Ini tanda terima kasih kecil dari saya)."
+    tips: [
+        "Kore (deket lo), Sore (deket lawan bicara), Are (jauh dari berdua). Inget jaraknya!",
+        "Kore/Sore/Are itu pengganti kata benda (langsung 'ini'), tapi Kono/Sono/Ano harus nempel ke benda (contoh: 'buku ini').",
+        "Kalau nanya pilihan (Buku atau Majalah?), tinggal sambungin aja pake 'ka' di tengah.",
+        "Sou desu itu jawaban paling aman kalau lo males ngulang kata-kata lawan bicara.",
+        "Latih nunjuk benda beneran di sekitar lo pake bahasa Jepang biar cepet hafal!"
+    ]
 };
 
 export default bab2;

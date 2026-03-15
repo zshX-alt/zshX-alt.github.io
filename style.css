@@ -1,9 +1,139 @@
-:root { --bg: #0a0a0a; --card-bg: #161616; --text: #ffffff; --accent: #b0b0b0; }
-body { background: var(--bg); color: var(--text); font-family: 'Inter', sans-serif; padding: 24px; }
-.card { background: var(--card-bg); border-radius: 16px; padding: 24px; margin-bottom: 24px; border: 1px solid #222; }
-.pola-title { color: var(--accent); font-weight: 800; margin-bottom: 12px; }
-.example-box { background: #000; padding: 20px; border-radius: 12px; border-left: 3px solid #333; }
-.jp { font-size: 1.4rem; margin: 0; color: #fff; }
-.ro { color: #555; font-size: 0.8rem; margin: 10px 0; font-family: monospace; }
-.bab-card { background: var(--card-bg); border: 2px solid #222; border-radius: 16px; padding: 20px 5px; text-align: center; text-decoration: none; transition: 0.3s; }
-.bab-card:hover { border-color: var(--accent); }
+:root {
+    --bg: #0d0d0d;        /* Hitam legap, lebih premium */
+    --card-bg: #161616;   /* Sedikit terang buat card */
+    --box-bg: #000000;    /* Hitam pekat buat example box */
+    --text-main: #e8e8e8;  /* Putih bersih tapi gak silau */
+    --text-gray: #a8a8a8;  /* Abu-abu teks sekunder */
+    --text-subtle: #6f6f6f; /* Buat penjelasan kecil */
+    --romaji: #9b9b9b;    /* Romaji lebih terang! Gak gelap lagi */
+    --accent: #f1c40f;    /* Kuning emas buat aksen */
+}
+
+body {
+    background-color: var(--bg);
+    color: var(--text-main);
+    font-family: 'Inter', -apple-system, system-ui, sans-serif;
+    margin: 0; 
+    padding: 32px;        /* Padding body lebih lega */
+    line-height: 1.6;
+}
+
+/* Header Bab */
+h1#title {
+    font-size: 2.5rem;
+    font-weight: 800;
+    color: var(--text-main);
+    margin-bottom: 8px;
+    letter-spacing: -1px;
+}
+
+p#desc {
+    color: var(--text-gray);
+    font-size: 1rem;
+    margin-top: 0;
+    margin-bottom: 48px;  /* Jarak jauh dari header ke konten */
+    max-width: 600px;
+}
+
+/* Card Styling */
+.card {
+    background: var(--card-bg);
+    border-radius: 20px; /* Lebih rounded */
+    padding: 32px;       /* Padding dalem jauh lebih lega */
+    margin-bottom: 32px; /* Jarak antar kartu lebih luas */
+    border: 1px solid #222;
+    transition: all 0.2s ease;
+}
+
+.card:hover {
+    transform: translateY(-2px);
+    border-color: #333;
+}
+
+/* Pola Title (1. Kore/Sore/Are) */
+.pola-title { 
+    color: var(--text-gray); 
+    font-weight: 700; 
+    font-size: 1.1rem;
+    margin-bottom: 20px; 
+    letter-spacing: 0.5px;
+}
+
+/* Example Box (Kotak hitam dalem) */
+.example-box {
+    background: var(--box-bg);
+    padding: 24px 32px;  /* Spacing dalam box lebih enak */
+    border-radius: 16px; 
+    border-left: 4px solid #282828; /* Border left subtle tapi tegas */
+}
+
+/* Teks Jepang (Pake Ruby) */
+.jp { 
+    font-size: 1.6rem; 
+    margin: 0; 
+    color: #fff; 
+    letter-spacing: 1px;
+    line-height: 1.4;
+}
+
+/* Romaji - FIXED KONTRAST */
+.ro { 
+    color: var(--romaji) !important; 
+    font-size: 0.95rem; 
+    margin: 14px 0;      /* Spacing atas bawah lebih pas */
+    font-family: 'SFMono-Regular', Consolas, 'Liberation Mono', Menlo, monospace;
+}
+
+/* Arti Bahasa Indonesia */
+.id { 
+    color: var(--text-gray); 
+    font-size: 0.95rem; 
+    font-style: italic; 
+    margin: 0; 
+    opacity: 0.8;
+}
+
+/* Tips Container */
+.tips-container {
+    background: #111;
+    border-left: 4px solid var(--accent);
+    padding: 24px 32px;
+    margin-top: 48px;     /* Jarak jauh dari materi */
+    border-radius: 16px;
+}
+
+.tips-container h3 { 
+    color: var(--accent); 
+    margin-top: 0; 
+    font-weight: 800;
+}
+
+.tips-container ul { 
+    color: #ccc; 
+    margin-bottom: 0; 
+    padding-left: 20px;
+}
+
+.tips-container li { 
+    margin-bottom: 12px; 
+    font-size: 0.95rem;
+}
+
+/* Tombol Next */
+button#next {
+    background: #fff;
+    color: #000;
+    border: none; 
+    padding: 18px;
+    border-radius: 14px; 
+    font-weight: 800;
+    font-size: 1rem;
+    width: 100%; 
+    cursor: pointer;
+    margin-top: 40px;
+    transition: all 0.2s ease;
+}
+
+button#next:hover {
+    background: #ddd;
+}

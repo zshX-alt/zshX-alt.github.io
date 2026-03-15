@@ -1,22 +1,37 @@
-function renderContent(data) {
-    document.getElementById('title').innerText = data.title;
-    document.getElementById('desc').innerText = data.description;
+const params = new URLSearchParams(window.location.search);
+const babId = parseInt(params.get('bab')) || 1;
 
-    let html = `<h2 style="color:#666; font-size:0.8rem; text-transform:uppercase; letter-spacing:2px; margin:30px 0 15px 5px;">Tata Bahasa</h2>`;
+async function loadData() {
+    try {
+        // Mengambil data dari folder data/babX.js
+        const module = await import(`./data/bab${babId}.js`);
+        const data = module.default;
+        
+        document.getElementById('title').innerText = data.title;
+        document.getElementById('desc').innerText = data.description;
 
-    data.bunpou.forEach(item => {
-        html += `
-            <div class="card">
-                <div class="pola-title">${item.pola}</div>
-                <div class="penjelasan-text">${item.penjelasan}</div>
-                
-                <div class="example-box">
-                    <p style="margin:0; font-size:1.3rem; color:#fff; letter-spacing:1px;">${item.jp}</p>
-                    <p style="margin:10px 0 5px 0; color:#555; font-size:0.85rem; font-family:monospace;">${item.ro}</p>
-                    <p style="margin:0; color:#888; font-size:0.85rem; font-style:italic;">"${item.id}"</p>
-                </div>
-            </div>`;
-    });
-    
-    document.getElementById('content').innerHTML = html;
+        let html = "";
+        data.bunpou.forEach(item => {
+            html += `
+                <div class="card">
+                    <div class="pola-title">${item.pola}</div>
+                    <div class="example-box">
+                        <p class="jp">${item.jp}</p>
+                        <p class="ro">${item.ro}</p>
+                        <p class="id">"${item.id}"</p>
+                    </div>
+                </div>`;
+        });
+        document.getElementById('content').innerHTML = html;
+
+        document.getElementById('next').onclick = () => {
+            window.location.href = `template.html?bab=${babId + 1}`;
+        };
+    } catch (error) {
+        document.getElementById('title').innerText = "Data Belum Tersedia";
+        document.getElementById('desc').innerText = "Bab ini masih dalam proses penyusunan.";
+        console.error("Gagal load file:", error);
+    }
 }
+
+loadData();

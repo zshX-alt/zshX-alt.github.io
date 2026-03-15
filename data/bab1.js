@@ -1,44 +1,39 @@
 const bab1 = {
-    title: "第１課 (Bab 1)",
-    description: "Kenalan yuk! Di sini lo belajar fondasi paling sakral: ngenalin diri, nanya orang, sampai pamer jabatan atau instansi.",
+    title: "第１課 (Bab 1) - Perkenalan Diri",
+    description: "Belajar menyatakan identitas, nama, asal, dan pekerjaan.",
     bunpou: [
         {
-            pola: "1. [Subjek] は [Predikat] です (Wa ... Desu)",
-            penjelasan: "Ini pola 'A adalah B'. Partikel 'Wa' itu penanda topik (highlighter), sedangkan 'Desu' itu wajib ada di akhir biar lo kedengeran sopan dan kalimatnya nggak gantung.",
-            jp: "<ruby>私<rt>わたし</rt></ruby> は サムスヌグ です。",
-            ro: "Watashi wa Samsnug desu.",
-            id: "Saya adalah Samsnug."
+            pola: "1. A wa B desu (A adalah B)",
+            jp: "<ruby>私<rt>わたし</rt></ruby> は <ruby>学生<rt>がくせい</rt></ruby> です。",
+            ro: "Watashi wa gakusei desu.",
+            id: "Saya adalah mahasiswa."
         },
         {
-            pola: "2. [Subjek] は [Predikat] じゃありません",
-            penjelasan: "Bentuk negatif (bukan/tidak). Kalau lo lagi di situasi formal banget (kayak pidato), lo bisa ganti 'Ja' jadi 'Dewa'. Tapi buat ngobrol asik, 'Ja' udah paling pas.",
-            jp: "サントスさん は <ruby>学生<rt>がくせい</rt></ruby> じゃありません。",
-            ro: "Santosu-san wa gakusei ja arimasen.",
-            id: "Sdr. Santos bukan seorang mahasiswa."
+            pola: "2. ~wa ~ja arimasen (Bukan)",
+            jp: "<ruby>私<rt>わたし</rt></ruby> は <ruby>会社員<rt>かいしゃいん</rt></ruby> では ありません。",
+            ro: "Watashi wa kaishain dewa arimasen.",
+            id: "Saya bukan karyawan perusahaan."
         },
         {
-            pola: "3. [Kalimat] か (Partikel Tanya)",
-            penjelasan: "Nanya di bahasa Jepang itu gampang banget. Tinggal tambahin 'Ka' di akhir kalimat. Nggak perlu tanda tanya, tapi intonasi di akhir harus naik ya!",
-            jp: "ミラーさん は <ruby>会社員<rt>かいしゃいん</rt></ruby> ですか。",
-            ro: "Miraa-san wa kaishain desu ka.",
-            id: "Apakah Sdr. Miller seorang karyawan perusahaan?"
+            pola: "3. ~wa ~desu ka (Kalimat tanya)",
+            jp: "あなたは <ruby>佐藤<rt>さとう</rt></ruby>さん です か。",
+            ro: "Anata wa Satou-san desu ka.",
+            id: "Apakah Anda Saudara Satou?"
         },
         {
-            pola: "4. [Subjek] も [Predikat] です (Partikel Mo)",
-            penjelasan: "Partikel 'Mo' artinya 'Juga'. Gunakan ini buat gantiin partikel 'Wa' kalau lo mau bilang sesuatu yang sama dengan pernyataan sebelumnya.",
-            jp: "グプタさん も <ruby>会社員<rt>かいしゃいん</rt></ruby> です。",
-            ro: "Guputa-san mo kaishain desu.",
-            id: "Sdr. Gupta juga seorang karyawan perusahaan."
-        },
-        {
-            pola: "5. [Benda 1] の [Benda 2] (Partikel No)",
-            penjelasan: "Partikel 'No' gunanya buat nyambungin dua kata benda. Bisa buat nunjukin kepemilikan atau spesialisasi (asal instansi).",
-            jp: "ミラーさん は IMC <ruby>の<rt></rt></ruby> <ruby>社員<rt>しゃいん</rt></ruby> です。",
-            ro: "Miraa-san wa IMC no shain desu.",
-            id: "Sdr. Miller adalah karyawan IMC."
+            pola: "4. N1 mo desu (Juga)",
+            jp: "<ruby>私<rt>わたし</rt></ruby> も <ruby>学生<rt>がくせい</rt></ruby> です。",
+            ro: "Watashi mo gakusei desu.",
+            id: "Saya juga mahasiswa."
         }
     ],
-    tips: "Pas ngenalin diri, jangan lupa pake 'Hajimemashite' di awal dan 'Douzo yoroshiku' di akhir. Terus, jangan pernah panggil diri sendiri pake '-san', itu cuma buat orang lain ya, Bos!"
+    tips: [
+        "**'Wa' vs 'Ga'**: Partikel 'wa' itu buat nunjukin topik yang lagi dibahas. 'Watashi wa...' artinya 'Membahas tentang saya, yaitu...' ",
+        "**'Desu'**: Ini bukan kata kerja, tapi kata bantu biar kalimat lo kedengeran sopan (polite). Jangan pernah lupa pake ini di awal-awal belajar!",
+        "**'Mo' (Juga)**: Gantiin 'wa' kalau lo mau bilang sesuatu yang sifatnya sama dengan orang sebelumnya.",
+        "**Pro Tip**: Jangan terlalu sering pake kata 'Anata' (Anda). Orang Jepang lebih suka manggil nama orangnya langsung diikuti '-san'. Lebih sopan, Bro!",
+        "**Kunci Survival**: Hafalin kosa kata profesi (Gakusei, Kaishain, Isha, dll). Ini bakal jadi *template* dasar lo buat kenalan."
+    ]
 };
 
 export default bab1;

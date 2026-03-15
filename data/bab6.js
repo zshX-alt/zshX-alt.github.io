@@ -1,51 +1,39 @@
 const bab6 = {
-    title: "第６課 (Bab 6)",
-    description: "Belajar cara pakai objek (makan, minum, beli) dan cara ngajak temen nongkrong bareng. Bab paling penting buat kehidupan sosial!",
+    title: "第６課 (Bab 6) - Makan, Minum, & Aktivitas",
+    description: "Belajar menyatakan aktivitas yang dilakukan terhadap suatu objek menggunakan partikel 'wo'.",
     bunpou: [
         {
-            pola: "1. [Benda] を [Kata Kerja Transitif]",
-            penjelasan: "Partikel 'O' (tulisannya 'Wo') gunanya buat nunjukin objek. Apa yang lo makan? Apa yang lo baca? Taruh bendanya sebelum 'O'.",
-            jp: "<ruby>御飯<rt>ごはん</rt></ruby> を <ruby>食<rt>た</rt></ruby>べます。",
-            ro: "Gohan o tabemasu.",
-            id: "Makan nasi."
+            pola: "1. [Objek] wo [Kata Kerja]",
+            jp: "<ruby>私<rt>わたし</rt></ruby> は <ruby>寿司<rt>すし</rt></ruby> を <ruby>食<rt>た</rt></ruby>べます。",
+            ro: "Watashi wa sushi wo tabemasu.",
+            id: "Saya makan sushi."
         },
         {
-            pola: "2. [Benda] を します",
-            penjelasan: "Kata kerja 'Shimasu' itu artinya 'Melakukan'. Bisa dipake buat main game, olahraga, atau ngerjain tugas. Praktis banget!",
-            jp: "サッカー を します。",
-            ro: "Sakkaa o shimasu.",
-            id: "Bermain sepak bola."
+            pola: "2. [Tempat] de [Aktivitas]",
+            jp: "<ruby>食堂<rt>しょくどう</rt></ruby> で <ruby>昼<rt>ひる</rt></ruby>ごはん を <ruby>食<rt>た</rt></ruby>べます。",
+            ro: "Shokudou de hirugohan wo tabemasu.",
+            id: "Saya makan siang di kantin."
         },
         {
-            pola: "3. 何 を しますか (Nani o shimasu ka)",
-            penjelasan: "Pertanyaan maut buat nanya 'Lagi ngapain?' atau 'Mau ngapain?'. Lo bisa tambahin keterangan waktu di depannya.",
-            jp: "<ruby>明日<rt>あした</rt></ruby> <ruby>何<rt>なに</rt></ruby> を しますか。",
-            ro: "Ashita nani o shimasu ka.",
-            id: "Besok mau ngapain?"
+            pola: "3. ~masen ka? (Ajakan)",
+            jp: "いっしょ に <ruby>映画<rt>えいが</rt></ruby> を <ruby>見<rt>み</rt></ruby>ませんか。",
+            ro: "Issho ni eiga wo mimasen ka?",
+            id: "Mau nonton film bareng nggak?"
         },
         {
-            pola: "4. [Tempat] で [Kata Kerja]",
-            penjelasan: "Inget Bos, partikel 'De' di sini artinya 'Di'. Bedanya sama 'Ni', 'De' dipake kalau ada **aksi/kegiatan** yang dilakuin di tempat itu.",
-            jp: "<ruby>駅<rt>えき</rt></ruby> で <ruby>新聞<rt>しんぶん</rt></ruby> を <ruby>買<rt>か</rt></ruby>います。",
-            ro: "Eki de shinbun o kaimasu.",
-            id: "Membeli koran di stasiun."
-        },
-        {
-            pola: "5. ～ませんか (Issho ni... masenka?)",
-            penjelasan: "Ini cara halus buat ngajak orang. Meskipun bentuknya negatif (Masenka), artinya justru ngajak: 'Mau nggak makan bareng?'",
-            jp: "いっしょに ビール を <ruby>飲<rt>の</rt></ruby>みませんか。",
-            ro: "Issho ni biiru o nomimasen ka.",
-            id: "Mau nggak minum bir bareng-bareng?"
-        },
-        {
-            pola: "6. ～ましょう (Mashou)",
-            penjelasan: "Kalau ini versi 'Ayo!'. Biasanya dipake buat ngerespon ajakan orang atau kalau lo udah semangat banget mau ngelakuin sesuatu.",
-            jp: "ちょっと <ruby>休<rt>やす</rt></ruby>ましょう。",
-            ro: "Chotto yasumimashou.",
-            id: "Ayo istirahat sebentar."
+            pola: "4. ~mashou (Ayo!)",
+            jp: "はい、<ruby>見<rt>み</rt></ruby>ましょう。",
+            ro: "Hai, mimashou.",
+            id: "Oke, ayo (kita) nonton."
         }
     ],
-    tips: "Hati-hati Bos, partikel を tulisannya 'Wo' tapi bacanya tetep 'O'. Terus bedain 'Doko de' (Di mana ngelakuin sesuatu) sama 'Doko e' (Mau ke mana). Kalau lo diajak '～masenka' dan mau nolak halus, lo bisa jawab 'Chotto...' sambil pasang muka gak enak, orang Jepang pasti langsung paham."
+    tips: [
+        "**Partikel 'wo' (を)**: Ini wajib buat nunjukin objek yang dikerjain. 'Sushi wo tabemasu', 'Rajio wo kikimasu'. Jangan sampe lupa ya, Bro!",
+        "**Partikel 'de' (で)**: Inget, kalau di Bab 5 'de' buat transportasi, di Bab 6 'de' buat tempat lo melakukan aktivitas. Contoh: 'Kouen de asobimasu' (Main di taman).",
+        "**Ajakan (masen ka)**: Ini cara paling sopan buat ngajak orang. Kalau dia jawab 'Mashou', artinya dia setuju. 'Ayo kita lakuin!'",
+        "**Pro Tip**: Sering-sering pake 'Issho ni' (bersama-sama) pas ngajak temen. Itu bikin ajakan lo kedengeran lebih *friendly*.",
+        "**Kunci Survival**: Hafalin kata kerja dasar (tabemasu, nomimasu, kaimasu, yomimasu, kikimasu, mimasu). Ini *vocabulary* wajib buat sehari-hari."
+    ]
 };
 
 export default bab6;

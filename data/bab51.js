@@ -1,5 +1,5 @@
 // File: /data/bab51.js
-// Rangkuman Materi Gas Pol buat Firman
+// Rangkuman Materi Gas Pol buat lo bro
 
 const data = {
     title: "Bab 51: Komunikasi Sakti Anak Pabrik",

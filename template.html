@@ -2,26 +2,18 @@
 <html lang="id">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>Nihongo Pro - Materi</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Materi Pelajaran</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <div class="container">
-        <header style="margin-bottom: 30px;">
-            <h1 id="title" style="font-size: 1.8rem;">Memuat...</h1>
-            <p id="desc" style="color: var(--text-gray); text-transform: none; letter-spacing: normal;"></p>
-        </header>
-
-        <div id="content"></div>
-
-        <button id="next" class="nav-btn">LANJUT KE BAB BERIKUTNYA</button>
-        
-        <a href="index.html" style="display: block; text-align: center; margin-top: 25px; color: var(--text-dim); text-decoration: none; font-size: 0.8rem; font-weight: 700; letter-spacing: 1px;">
-            ← KEMBALI KE DASHBOARD
-        </a>
-    </div>
-
-    <script type="module" src="main.js"></script>
+    <header>
+        <h1 id="title">Loading...</h1>
+        <p id="desc"></p>
+    </header>
+    <div id="content" style="width:100%; display:flex; flex-direction:column; align-items:center;"></div>
+    <button id="next" class="nav-btn">NEXT CHAPTER</button>
+    <a href="index.html" style="margin-top:20px; color:var(--text-dim); text-decoration:none; font-size:0.8rem;">BACK TO MENU</a>
+    <script type="module" src="app.js"></script>
 </body>
 </html>

@@ -10,9 +10,10 @@
             --bg: #0a0a0a;           /* Hitam pekat modern */
             --card-bg: #161616;      /* Abu-abu gelap kartu */
             --text-main: #ffffff;    /* Putih bersih */
-            --text-gray: #b0b0b0;    /* Abu-abu aksen (Gray Pro) */
-            --text-dim: #555555;     /* Abu-abu redup (untuk label) */
+            --text-gray: #b0b0b0;    /* Abu-abu aksen */
+            --text-dim: #555555;     /* Abu-abu redup */
             --border: #222222;       /* Garis batas halus */
+            --gold: #f1c40f;         /* Warna emas spesial */
         }
 
         * {
@@ -58,7 +59,7 @@
         /* --- GRID CONTAINER --- */
         #bab-list {
             display: grid;
-            grid-template-columns: repeat(4, 1fr); /* 4 kolom di HP */
+            grid-template-columns: repeat(4, 1fr);
             gap: 12px;
             width: 100%;
             max-width: 500px;
@@ -79,7 +80,6 @@
             transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
         }
 
-        /* Hover & Touch Effect */
         .bab-card:active {
             transform: scale(0.9);
             background: #1f1f1f;
@@ -102,10 +102,20 @@
             letter-spacing: 0.5px;
         }
 
+        /* --- SPESIAL BAB 51 --- */
+        .bab-card.special {
+            border-color: var(--gold);
+            box-shadow: 0 0 12px rgba(241, 196, 15, 0.15);
+        }
+        
+        .bab-card.special .number {
+            color: var(--gold);
+        }
+
         /* Responsive Desktop */
         @media (min-width: 600px) {
             #bab-list {
-                grid-template-columns: repeat(5, 1fr); /* 5 kolom di PC */
+                grid-template-columns: repeat(5, 1fr);
                 gap: 16px;
             }
             header h1 { font-size: 2.8rem; }
@@ -117,7 +127,7 @@
 
     <header>
         <h1>Nihongo Pro</h1>
-        <p>Minna no Nihongo (1 - 50)</p>
+        <p>Minna no Nihongo (1 - 50) + Ekstra</p>
     </header>
 
     <div id="bab-list"></div>
@@ -127,12 +137,16 @@
         document.addEventListener('DOMContentLoaded', () => {
             const container = document.getElementById('bab-list');
             
-            // Loop bikin 50 Card
-            for (let i = 1; i <= 50; i++) {
+            // Loop bikin 51 Card (Udah di-update!)
+            for (let i = 1; i <= 51; i++) {
                 const card = document.createElement('a');
-                // Link lempar ke template.html dengan ID Bab
                 card.href = `template.html?bab=${i}`;
                 card.className = 'bab-card';
+                
+                // Kasih class 'special' buat Bab 51
+                if (i === 51) {
+                    card.classList.add('special');
+                }
                 
                 card.innerHTML = `
                     <span class="number">${i}</span>

@@ -1,139 +1,150 @@
+/* --- CONFIGURATION & COLORS --- */
 :root {
-    --bg: #0d0d0d;        /* Hitam legap, lebih premium */
-    --card-bg: #161616;   /* Sedikit terang buat card */
-    --box-bg: #000000;    /* Hitam pekat buat example box */
-    --text-main: #e8e8e8;  /* Putih bersih tapi gak silau */
-    --text-gray: #a8a8a8;  /* Abu-abu teks sekunder */
-    --text-subtle: #6f6f6f; /* Buat penjelasan kecil */
-    --romaji: #9b9b9b;    /* Romaji lebih terang! Gak gelap lagi */
-    --accent: #f1c40f;    /* Kuning emas buat aksen */
+    --bg: #0a0a0a;           /* Hitam pekat */
+    --card-bg: #161616;      /* Abu-abu gelap kartu */
+    --text-main: #ffffff;    /* Putih bersih */
+    --text-gray: #b0b0b0;    /* Abu-abu aksen */
+    --text-dim: #555555;     /* Abu-abu redup */
+    --border: #222222;       /* Garis batas */
+    --gold: #f1c40f;         /* Warna emas Bab 51 */
+    --success: #2ecc71;      /* Hijau buat arti bahasa */
+}
+
+* {
+    box-sizing: border-box;
+    -webkit-tap-highlight-color: transparent;
 }
 
 body {
     background-color: var(--bg);
     color: var(--text-main);
     font-family: 'Inter', -apple-system, system-ui, sans-serif;
-    margin: 0; 
-    padding: 32px;        /* Padding body lebih lega */
-    line-height: 1.6;
+    margin: 0;
+    padding: 24px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
-/* Header Bab */
-h1#title {
-    font-size: 2.5rem;
-    font-weight: 800;
-    color: var(--text-main);
-    margin-bottom: 8px;
-    letter-spacing: -1px;
+/* --- HEADER --- */
+header {
+    text-align: center;
+    margin-bottom: 40px;
+    margin-top: 20px;
 }
 
-p#desc {
+header h1 {
+    font-size: 2.2rem;
     color: var(--text-gray);
-    font-size: 1rem;
-    margin-top: 0;
-    margin-bottom: 48px;  /* Jarak jauh dari header ke konten */
+    margin: 0;
+    letter-spacing: -1.5px;
+    font-weight: 800;
+}
+
+header p {
+    color: var(--text-dim);
+    font-size: 0.8rem;
+    margin-top: 8px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    font-weight: 600;
+}
+
+/* --- DASHBOARD GRID (index.html) --- */
+#bab-list {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 12px;
+    width: 100%;
+    max-width: 500px;
+    padding-bottom: 60px;
+}
+
+.bab-card {
+    background: var(--card-bg);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    padding: 20px 5px;
+    text-align: center;
+    text-decoration: none;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.bab-card:active {
+    transform: scale(0.9);
+    background: #1f1f1f;
+}
+
+.bab-card .number {
+    font-size: 1.6rem;
+    font-weight: 800;
+    color: var(--text-gray);
+    line-height: 1;
+}
+
+.bab-card .label {
+    font-size: 0.6rem;
+    color: var(--text-dim);
+    text-transform: uppercase;
+    margin-top: 6px;
+    font-weight: 700;
+}
+
+/* KHUSUS BAB 51 */
+.bab-card.special {
+    border-color: var(--gold);
+    box-shadow: 0 0 15px rgba(241, 196, 15, 0.1);
+}
+
+.bab-card.special .number {
+    color: var(--gold);
+}
+
+/* --- MATERI CONTENT (template.html) --- */
+.materi-container {
+    width: 100%;
     max-width: 600px;
 }
 
-/* Card Styling */
 .card {
     background: var(--card-bg);
-    border-radius: 20px; /* Lebih rounded */
-    padding: 32px;       /* Padding dalem jauh lebih lega */
-    margin-bottom: 32px; /* Jarak antar kartu lebih luas */
-    border: 1px solid #222;
-    transition: all 0.2s ease;
-}
-
-.card:hover {
-    transform: translateY(-2px);
-    border-color: #333;
-}
-
-/* Pola Title (1. Kore/Sore/Are) */
-.pola-title { 
-    color: var(--text-gray); 
-    font-weight: 700; 
-    font-size: 1.1rem;
-    margin-bottom: 20px; 
-    letter-spacing: 0.5px;
-}
-
-/* Example Box (Kotak hitam dalem) */
-.example-box {
-    background: var(--box-bg);
-    padding: 24px 32px;  /* Spacing dalam box lebih enak */
-    border-radius: 16px; 
-    border-left: 4px solid #282828; /* Border left subtle tapi tegas */
-}
-
-/* Teks Jepang (Pake Ruby) */
-.jp { 
-    font-size: 1.6rem; 
-    margin: 0; 
-    color: #fff; 
-    letter-spacing: 1px;
-    line-height: 1.4;
-}
-
-/* Romaji - FIXED KONTRAST */
-.ro { 
-    color: var(--romaji) !important; 
-    font-size: 0.95rem; 
-    margin: 14px 0;      /* Spacing atas bawah lebih pas */
-    font-family: 'SFMono-Regular', Consolas, 'Liberation Mono', Menlo, monospace;
-}
-
-/* Arti Bahasa Indonesia */
-.id { 
-    color: var(--text-gray); 
-    font-size: 0.95rem; 
-    font-style: italic; 
-    margin: 0; 
-    opacity: 0.8;
-}
-
-/* Tips Container */
-.tips-container {
-    background: #111;
-    border-left: 4px solid var(--accent);
-    padding: 24px 32px;
-    margin-top: 48px;     /* Jarak jauh dari materi */
+    border: 1px solid var(--border);
     border-radius: 16px;
+    padding: 20px;
+    margin-bottom: 15px;
 }
 
-.tips-container h3 { 
-    color: var(--accent); 
-    margin-top: 0; 
-    font-weight: 800;
+.pola-title {
+    font-weight: 700;
+    color: var(--gold);
+    font-size: 1rem;
+    margin-bottom: 10px;
+    display: block;
+    text-transform: uppercase;
 }
 
-.tips-container ul { 
-    color: #ccc; 
-    margin-bottom: 0; 
-    padding-left: 20px;
-}
+.jp { font-size: 1.5rem; font-weight: 600; margin: 0 0 5px 0; }
+.ro { color: var(--text-gray); font-style: italic; font-size: 0.9rem; margin-bottom: 5px; }
+.id { color: var(--success); font-weight: 500; margin: 0; }
 
-.tips-container li { 
-    margin-bottom: 12px; 
-    font-size: 0.95rem;
-}
-
-/* Tombol Next */
-button#next {
-    background: #fff;
-    color: #000;
-    border: none; 
+.nav-btn {
+    width: 100%;
     padding: 18px;
-    border-radius: 14px; 
+    border: none;
+    border-radius: 16px;
+    background: var(--text-gray);
+    color: var(--bg);
     font-weight: 800;
     font-size: 1rem;
-    width: 100%; 
     cursor: pointer;
-    margin-top: 40px;
-    transition: all 0.2s ease;
+    margin-top: 20px;
 }
 
-button#next:hover {
-    background: #ddd;
+/* --- RESPONSIVE --- */
+@media (min-width: 600px) {
+    #bab-list { grid-template-columns: repeat(5, 1fr); gap: 16px; }
+    header h1 { font-size: 2.8rem; }
 }

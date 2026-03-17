@@ -1,13 +1,13 @@
-/* --- CONFIGURATION & COLORS --- */
+/* --- GLOBAL CONFIGURATION --- */
 :root {
     --bg: #0a0a0a;           /* Hitam pekat */
     --card-bg: #161616;      /* Abu-abu gelap kartu */
     --text-main: #ffffff;    /* Putih bersih */
     --text-gray: #b0b0b0;    /* Abu-abu aksen */
     --text-dim: #555555;     /* Abu-abu redup */
-    --border: #222222;       /* Garis batas */
-    --gold: #f1c40f;         /* Warna emas Bab 51 */
-    --success: #2ecc71;      /* Hijau buat arti bahasa */
+    --border: #222222;       /* Garis batas halus */
+    --gold: #f1c40f;         /* Warna emas spesial */
+    --success: #2ecc71;      /* Hijau untuk arti */
 }
 
 * {
@@ -57,7 +57,6 @@ header p {
     gap: 12px;
     width: 100%;
     max-width: 500px;
-    padding-bottom: 60px;
 }
 
 .bab-card {
@@ -70,19 +69,15 @@ header p {
     display: flex;
     flex-direction: column;
     justify-content: center;
-    transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+    transition: 0.2s ease;
 }
 
-.bab-card:active {
-    transform: scale(0.9);
-    background: #1f1f1f;
-}
+.bab-card:active { transform: scale(0.9); background: #1f1f1f; }
 
 .bab-card .number {
     font-size: 1.6rem;
     font-weight: 800;
     color: var(--text-gray);
-    line-height: 1;
 }
 
 .bab-card .label {
@@ -94,41 +89,32 @@ header p {
 }
 
 /* KHUSUS BAB 51 */
-.bab-card.special {
-    border-color: var(--gold);
-    box-shadow: 0 0 15px rgba(241, 196, 15, 0.1);
-}
-
-.bab-card.special .number {
-    color: var(--gold);
-}
+.bab-card.special { border-color: var(--gold); box-shadow: 0 0 15px rgba(241, 196, 15, 0.1); }
+.bab-card.special .number { color: var(--gold); }
 
 /* --- MATERI CONTENT (template.html) --- */
-.materi-container {
-    width: 100%;
-    max-width: 600px;
-}
+.container { width: 100%; max-width: 600px; }
 
 .card {
     background: var(--card-bg);
     border: 1px solid var(--border);
     border-radius: 16px;
     padding: 20px;
-    margin-bottom: 15px;
+    margin-bottom: 16px;
 }
 
 .pola-title {
-    font-weight: 700;
+    font-weight: bold;
     color: var(--gold);
-    font-size: 1rem;
-    margin-bottom: 10px;
-    display: block;
+    font-size: 0.9rem;
     text-transform: uppercase;
+    margin-bottom: 12px;
+    display: block;
 }
 
-.jp { font-size: 1.5rem; font-weight: 600; margin: 0 0 5px 0; }
-.ro { color: var(--text-gray); font-style: italic; font-size: 0.9rem; margin-bottom: 5px; }
-.id { color: var(--success); font-weight: 500; margin: 0; }
+.jp { font-size: 1.5rem; font-weight: 600; margin: 0 0 8px 0; }
+.ro { color: var(--text-gray); font-style: italic; font-size: 0.9rem; margin-bottom: 8px; }
+.id { color: var(--success); font-weight: 500; font-size: 1.1rem; margin: 0; }
 
 .nav-btn {
     width: 100%;
@@ -140,10 +126,10 @@ header p {
     font-weight: 800;
     font-size: 1rem;
     cursor: pointer;
-    margin-top: 20px;
+    margin-top: 10px;
 }
 
-/* --- RESPONSIVE --- */
+/* Responsive Desktop */
 @media (min-width: 600px) {
     #bab-list { grid-template-columns: repeat(5, 1fr); gap: 16px; }
     header h1 { font-size: 2.8rem; }
